@@ -8,19 +8,18 @@ class Index extends CI_Controller {
     }
 
     public function index(){
-        $this->load->view('index_index');
+        $this->load->view('index_index.html');
     }
 
     public function quotation(){
-        $this->load->view('index_quotation');
+        $this->load->view('index_quotation.html');
     }
 
     public function wish_list(){
-        $this->load->view('index_wish_list');
+        $this->load->view('index_wish_list.html');
     }
 
     public function add_wish_list(){
-        $this->load->helper();
     }
 
 }

@@ -34,15 +34,7 @@ class Admin extends CI_Controller {
             $r['enquiry_images'] =  $r['enquiry_images'] ? unserialize($r['enquiry_images']) : array();
             unset($r);
         }
-        $this->load->view('admin_quotation_list',array('list'=>$res));
-    }
-
-    public function upgrade_quotation_price_ajax(){
-        if(is_ajax()){
-            $qid = $this->input->post('qid',true);
-            $price = $this->input->post('price',true);
-
-        }
+        $this->load->view('admin_quotation_list.html',array('list'=>$res));
     }
 
     //回复报价
@@ -64,7 +56,7 @@ class Admin extends CI_Controller {
             $result = $this->p->db->update('quotation',$data);
             if($result){
                 echo '保持成功';
-                header("Location: /Admin/quotation_list");
+                header("Location: /admin/quotation_list");
             }
         }
 
@@ -72,7 +64,7 @@ class Admin extends CI_Controller {
         $this->p->db->from('quotation');
         $this->p->db->where(array('quotation_id'=>$qid));
         $res = $this->p->db->get()->row_array();
-        $this->load->view('admin_quotation_edit',array('quo'=>$res));
+        $this->load->view('admin_quotation_edit.html',array('quo'=>$res));
     }
 
 }
