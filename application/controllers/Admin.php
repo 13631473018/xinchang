@@ -13,8 +13,6 @@ class Admin extends CI_Controller {
         $this->load->model('public_model', 'p');
     }
 
-
-
     public function index(){
 
         //$this->load->view('admin_index');
@@ -30,7 +28,7 @@ class Admin extends CI_Controller {
             if(!intval($r['reply_price'])){
                 $r['reply_price'] = '';
             }
-            $r['addtime'] = intval($r['addtime']) ? date('Y-m-d',$r['addtiem']) : '-';
+            $r['addtime'] = intval($r['addtime']) ? date('Y-m-d',$r['addtime']) : '-';
             $r['enquiry_images'] =  $r['enquiry_images'] ? unserialize($r['enquiry_images']) : array();
             unset($r);
         }
@@ -43,13 +41,15 @@ class Admin extends CI_Controller {
         $qid = $this->input->get('qid',true);
 
         if(IS_POST){
+            $this->load->library('file');
             $price = trim($this->input->post('reply_price','trim'));
             $reply_content = trim($this->input->post('reply_content','trim'));
-            $attach = '/upload/abc.jpg';
+            $reply_attach = $_FILES['reply_attach'];
+            $upload = $this->file->upload_file($reply_attach);
             $data = array(
                 'reply_price'=>$price,
                 'reply_content'=>$reply_content,
-                'reply_attach'=>$attach,
+                'reply_attach'=>$upload->filePath,
                 'is_reply'=>1,
             );
             $this->p->db->where(array('quotation_id'=>$qid));
