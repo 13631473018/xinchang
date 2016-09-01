@@ -25,6 +25,7 @@
 	var $ediBtn = $(".box .content .con-need .con-edi");
 	var $ediSave = $(".box .content .con-need .con-edi-hide .add-submit");
 	var $ediDel = $(".box .content .con-need .con-del");
+	var $ediClose =$(".box .content .con-need .con-edi-hide .close");
 	//增加项目
 	$addBtn.click(function(){
 		$add.css("transform","scale(1)");
@@ -48,6 +49,10 @@
 	//删除当前项目
 	$ediDel.click(function(){
 		$(this).parent().remove();
+	});
+	//关闭当前项目
+	$ediClose.click(function(){
+		$ediHide.css("display","none");
 	});
 	// $savaSuccessEnter.click(function(){
 	// 	$saveSuccess.css("transform","scale(0)")
