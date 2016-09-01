@@ -91,9 +91,8 @@
             <tr>
                 <th>报价ID</th>
                 <th>报价标题</th>
-                <th>报价内容</th>
-                <th>报价图片</th>
                 <th>价格</th>
+                <th>状态</th>
                 <th>报价附件</th>
                 <th>复价附件</th>
                 <th>时间</th>
@@ -106,18 +105,16 @@
             <tr>
                 <td><?=$item['quotation_id']?></td>
                 <td><?=$item['enquiry_title']?></td>
-                <td><?=$item['enquiry_content']?></td>
-                <td>
-                    <?php if($item['enquiry_images']): ?>
-                        <?php foreach($item['enquiry_images'] as $image): ?>
-                            <img src="<?=$image?>" alt="" width="600" height="600">
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?=$item['reply_price']?>
-                </td>
-                <th>询价附件</th>
+                <!--<td>-->
+                    <!--<?php if($item['enquiry_images']): ?>-->
+                        <!--<?php foreach($item['enquiry_images'] as $image): ?>-->
+                            <!--<img src="<?=$image?>" alt="" width="600" height="600">-->
+                        <!--<?php endforeach; ?>-->
+                    <!--<?php endif; ?>-->
+                <!--</td>-->
+                <td><?=$item['reply_price']?></td>
+                <td><?=$item['is_reply']?'已报价':'未报价'?></td>
+                <th><a href="<?=$item['enquiry_attach']?>" target="_blank">报价附件</a></th>
                 <th>复价附件</th>
                 <td><?=$item['addtime']?></td>
                 <td>
