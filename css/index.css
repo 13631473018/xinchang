@@ -273,6 +273,9 @@
 .wrap .management .management-l .management-l-m .Task .Task-hide .img-wrap{
 	padding: 10px 0 10px 0px;
 }
+.wrap .management .management-l .management-l-m .Task .Task-hide .img-wrap .blog-content{
+	margin-left:65px;
+}
 .wrap .management .management-l .management-l-m .Task .Task-hide .img-wrap .img-list{
 	width:600px;
 	margin:15px auto 0;
