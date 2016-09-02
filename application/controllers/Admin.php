@@ -1,20 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends MY_Controller {
 
     protected $_user_name,$_password = null;
 
     public function __construct(){
         parent::__construct();
-       /* if(!isset($_SESSION['auth_admin_user_name'])){
-            header("Location: /Admin_Login/login");
-        }*/
+        if(!$this->session->userdata('auth_admin_login')){
+            header("Location: /admin_login/login");
+        }
         $this->load->model('public_model', 'p');
     }
 
     public function index(){
-
         //$this->load->view('admin_index');
         $this->quotation_list();
     }
@@ -22,6 +21,7 @@ class Admin extends CI_Controller {
     public function quotation_list(){
         $this->p->db->select('*');
         $this->p->db->from('quotation');
+        $this->p->db->where(array('is_deleted'=>0));
         $this->p->db->limit(0,20);
         $res =  $this->p->db->get()->result_array();
         foreach($res as &$r){
@@ -65,6 +65,17 @@ class Admin extends CI_Controller {
         $this->p->db->where(array('quotation_id'=>$qid));
         $res = $this->p->db->get()->row_array();
         $this->load->view('admin_quotation_edit.html',array('quo'=>$res));
+    }
+
+    public function quotation_del(){
+        $this->load->model('quotation_model','quotation');
+        $qid = $this->input->get('qid',true);
+        if(!$qid){
+            echo '参数有误！';
+            header('Location: /admin/quotation_list');
+        }
+        $res = $this->quotation->del($qid);
+        header('Location: /admin/quotation_list');
     }
 
 }

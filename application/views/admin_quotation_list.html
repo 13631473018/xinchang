@@ -131,7 +131,7 @@
                 <td><?=$item['addtime']?></td>
                 <td>
                     <a href="/admin/quotation_edit?qid=<?=$item['quotation_id']?>"><img src="/images/admin/icon_edit.gif" title="编辑"></a>
-                    <a class="a-dele" style="margin:0 0 0 10px;" onclick="return dele('报价ID:<?=$item['quotation_id']?>');" href=""><img src="/images/admin/icon_trash.gif" title="删除"></a>
+                    <a class="a-dele" style="margin:0 0 0 10px;" onclick="return dele('报价ID:<?=$item['quotation_id']?>');" href="/admin/quotation_del?qid=<?=$item['quotation_id']?>"><img src="/images/admin/icon_trash.gif" title="删除"></a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -155,24 +155,6 @@
 </body></html>
 
 <script type="text/javascript">
-
-    function save_price(qid,price) {
-        $.ajax({
-            url: '/admin/upgrade_quotation_price_ajax/',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                'qid':qid,
-                'price':price
-            },
-            success: function(data) {
-                if (data.code == 1) {
-
-                }
-            }
-
-        });
-    }
 
 
 </script>
