@@ -19,6 +19,7 @@ class Admin extends MY_Controller {
     }
 
     public function quotation_list(){
+        $this->load->model('upload_file_model','upload_file');
         $this->p->db->select('*');
         $this->p->db->from('quotation');
         $this->p->db->where(array('is_deleted'=>0));
@@ -29,7 +30,16 @@ class Admin extends MY_Controller {
                 $r['reply_price'] = '';
             }
             $r['addtime'] = intval($r['addtime']) ? date('Y-m-d',$r['addtime']) : '-';
-            $r['enquiry_images'] =  $r['enquiry_images'] ? unserialize($r['enquiry_images']) : array();
+            if($r['enquiry_attach']){
+                $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['enquiry_attach']);
+                $r['enquiry_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+                $r['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+            }
+            if($r['reply_attach']){
+                $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['enquiry_attach']);
+                $r['reply_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+                $r['reply_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+            }
             unset($r);
         }
         $this->load->view('admin_quotation_list.html',array('list'=>$res));
@@ -46,17 +56,19 @@ class Admin extends MY_Controller {
     public function quotation_edit(){
 
         $qid = $this->input->get('qid',true);
+        $this->load->model('upload_file_model','upload_file');
 
         if(IS_POST){
             $this->load->library('file');
             $price = trim($this->input->post('reply_price','trim'));
             $reply_content = trim($this->input->post('reply_content','trim'));
             $reply_attach = $_FILES['reply_attach'];
-            $upload = $this->file->upload_file($reply_attach);
+            $upload_ojb = $this->file->upload_file($reply_attach);
+            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
             $data = array(
                 'reply_price'=>$price,
                 'reply_content'=>$reply_content,
-                'reply_attach'=>$upload->filePath,
+                'reply_attach'=>$upload_file_id,
                 'is_reply'=>1,
             );
             $this->p->db->where(array('quotation_id'=>$qid));
@@ -71,6 +83,16 @@ class Admin extends MY_Controller {
         $this->p->db->from('quotation');
         $this->p->db->where(array('quotation_id'=>$qid));
         $res = $this->p->db->get()->row_array();
+        if($res['enquiry_attach']){
+            $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($res['enquiry_attach']);
+            $res['enquiry_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+            $res['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+        }
+        if($res['reply_attach']){
+            $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($res['reply_attach']);
+            $res['reply_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+            $res['reply_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+        }
         $this->load->view('admin_quotation_edit.html',array('quo'=>$res));
     }
 

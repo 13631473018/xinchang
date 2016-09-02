@@ -32,9 +32,7 @@ class file
         }
         if(!empty($this->f['tmp_name']) && $this->f['size'] != 0 && $this->f['error'] == 0 ){
             $file_info = pathinfo($this->f['name']);
-            $fileName = '_' . $file_info['filename'] . '_';
-            $fileName .= SYSTEM_TIME . uniqid();
-
+            $fileName = SYSTEM_TIME . uniqid();
             $ext = $file_info['extension'];
             $fileName .= '.' . $ext;
             $save_absolute = $this->path . $fileName;

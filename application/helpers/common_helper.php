@@ -77,14 +77,17 @@ if (!function_exists('ip')) {
 
 //获取原文件名
 if(!function_exists('get_file_origin_name')){
-
     //\upload\2016\09\02\_原文件名_aasgsg.jpg
     function get_file_origin_name($path){
-        $start_pos = strpos($path,'_');
-        $end_pos = strrpos ($path,'_');
-        $origin_name = substr($path, $start_pos+1,$end_pos-1);
-        wwww($origin_name);
-        //die;
+        if(!$path){
+            return '';
+        }
+        $file_info = pathinfo($path);
+        $start_pos = strpos($file_info['basename'],'_');
+        $end_pos = strrpos ($file_info['basename'],'_');
+        $origin_name = substr($file_info['basename'],$start_pos+1,$end_pos-$start_pos-1);
+        $origin_name .=  '.' . $file_info['extension'];
+        return $origin_name;
 
     }
 

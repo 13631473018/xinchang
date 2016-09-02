@@ -68,7 +68,7 @@
                             <td>报价内容:<?=$quo['enquiry_content']?></td>
                         </tr>
                         <tr>
-                            <td>报价附件:<a href="<?=$quo['enquiry_attach']?>" target="_blank">查看附件</a></td>
+                            <td>报价附件:<a href="<?=$quo['enquiry_file_path']?>" target="_blank"><?=$quo['enquiry_origin_name']?></a></td>
                         </tr>
                         <tr>
                             <td>价格:<input type="text" name="reply_price" value="<?=$quo['reply_price']?>" placeholder="请输入价格" class="number"></td>
@@ -91,7 +91,7 @@
                             <td>
                                 复价附件:
                                 <?php if($quo['reply_attach']): ?>
-                                    <a href="<?=$quo['reply_attach']?>" target="_blank">查看附件</a>
+                                    <a href="<?=$quo['reply_file_path']?>" target="_blank"><?=$quo['reply_origin_name']?></a>
                                 <?php endif; ?>
                                 <input type="file" name="reply_attach">
                             </td>
