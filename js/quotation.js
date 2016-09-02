@@ -24,7 +24,6 @@
 	var $ediHide = $(".box .content .con-need .con-edi-hide");
 	var $ediBtn = $(".box .content .con-need .con-edi");
 	var $ediSave = $(".box .content .con-need .con-edi-hide .add-submit");
-	var $ediDel = $(".box .content .con-need .con-del");
 	var $ediClose =$(".box .content .con-need .con-edi-hide .close");
 	//增加项目
 	$addBtn.click(function(){
