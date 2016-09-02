@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller {
      *
      */
     public function init() {
-        $this->load->library('session');
+        session_start();
     }
 
 

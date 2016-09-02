@@ -133,28 +133,28 @@
     <?php if($list): ?>
     <?php foreach($list as $item): ?>
         <ul>
-            <li class="on"><?=$item['quotation_id']?></li>
-            <li><?=$item['enquiry_title']?></li>
-            <li title="<?=$item['enquiry_content']?>"><?=$item['enquiry_content']?></li>
+            <li class="on"><? echo $item['quotation_id']; ?></li>
+            <li><? echo $item['enquiry_title']; ?></li>
+            <li title="<?php echo $item['enquiry_content'];?>"><?php echo $item['enquiry_content'];?></li>
             <li>
                 <?php if($item['enquiry_attach']): ?>
-                    <a href="<?=$item['enquiry_file_path']?>"><?=$item['enquiry_origin_name']?></a>
+                    <a href="<?php echo $item['enquiry_file_path'];?>"><?php echo $item['enquiry_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
             </li>
             <li>
                 <?php if($item['reply_attach']): ?>
-                    <a href="<?=$item['reply_file_path']?>"><?=$item['reply_origin_name']?></a>
+                    <a href="<?php echo $item['reply_file_path'];?>"><?php echo $item['reply_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
             </li>
-            <li class="on"><?=$item['is_reply']?'已报价':'未报价'?></li>
-            <li><?=$item['addtime']?></li>
+            <li class="on"><?php echo($item['is_reply'] ? '已报价' : '未报价' ); ?></li>
+            <li><?php echo $item['addtime']?></li>
             <li>
-                <a href="/admin/quotation_edit?qid=<?=$item['quotation_id']?>"><img src="/images/admin/icon_edit.gif" title="编辑"></a>
-                <a class="a-dele" style="margin:0 0 0 10px;" onclick="return dele('报价ID:<?=$item['quotation_id']?>');" href="/admin/quotation_del?qid=<?=$item['quotation_id']?>"><img src="/images/admin/icon_trash.gif" title="删除"></a>
+                <a href="/admin/quotation_edit?qid=<?php echo $item['quotation_id'];?>"><img src="/images/admin/icon_edit.gif" title="编辑"></a>
+                <a class="a-dele" style="margin:0 0 0 10px;" onclick="return dele('报价ID:<?php echo $item['quotation_id'];?>');" href="/admin/quotation_del?qid=<?php echo $item['quotation_id'];?>"><img src="/images/admin/icon_trash.gif" title="删除"></a>
             </li>
         </ul>
     <?php endforeach; ?>

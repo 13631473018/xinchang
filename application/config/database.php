@@ -70,9 +70,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
+$ip = ip();
 $active_group = 'default';
-$query_builder = TRUE;
+if(in_array($ip,array('127.0.0.1','::1'))){
+    $active_group = 'default';
+}
 
+//demo
+if(in_array($ip,array('183.240.128.107'))){
+    $active_group = 'demo';
+}
+
+$query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost;port=3306;dbname=xin_chang',
 	'hostname' => 'localhost',
@@ -94,3 +103,26 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+$db['demo'] = array(
+    'dsn'	=> 'mysql:host=kvbp5g0c.zzcdb.dnstoo.com;port=3306;dbname=xinchang',
+    'hostname' => 'kvbp5g0c.zzcdb.dnstoo.com',
+    'username' => 'xinchang_f',
+    'password' => 'xinchang',
+    'database' => 'xinchang',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => 'xc_',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+);
+

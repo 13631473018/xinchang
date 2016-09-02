@@ -106,7 +106,7 @@
             <i class="con-need-add-close"></i>
             <form action="/quotation/add" method="post" enctype="multipart/form-data">
                 项目名称：<input type="text" class="project-name" name="enquiry_title"><br/><br/>
-                咨询日期：<span><?=date('d/m/y');?></span><br/>
+                咨询日期：<span><?php echo date('d/m/y');?></span><br/>
                 <br/>
                 <span style="position: absolute;">项目描述：</span>
                 <textarea name="enquiry_content" cols="30" rows="10" class="need-miaoshu"></textarea>
@@ -124,24 +124,24 @@
                 <div class="con-edi-hide">
                     <i class="con-need-add-close"></i>
                     <form action="/quotation/edit" method="post" enctype="multipart/form-data">
-                        项目名称：<input type="text" value="<?=$quo['enquiry_title']?>" name="enquiry_title" class="project-name"><br/><br/>
-                        咨询日期：<span><?=$quo['addtime']?></span><br/>
+                        项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
+                        咨询日期：<span><?php $quo['addtime']; ?></span><br/>
                         <br/>
                         <span style="position: absolute;">项目描述：</span>
-                        <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?=$quo['enquiry_content']?></textarea>
+                        <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
                         <div class="add-submit"><input type="submit" value="save"></div><br/>
                         <i class="close"></i>
                         <i class="file-icon"></i>
                         <input type="file" name="enquiry_attach" class="file-input">
-                        <input type="hidden" name="qid" value="<?=$quo['quotation_id']?>">
+                        <input type="hidden" name="qid" value="<?php echo $quo['quotation_id'];?>">
                     </form>
                 </div>
-                <p class="con-title"><?=$quo['enquiry_title']?></p>
-                <p><?=$quo['enquiry_content']?></p>
+                <p class="con-title"><?php echo $quo['enquiry_title'];?></p>
+                <p><?php echo $quo['enquiry_content'];?></p>
                 <?php if($quo['enquiry_attach']) :?>
                     <div>
                         <i class="file-icon"></i>
-                        <a href="<?=$quo['file_path']?>" target="_blank"><?=$quo['origin_name']?></a>
+                        <a href="<?php echo $quo['file_path'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>
                     </div>
                 <?php endif;?>
 
@@ -154,10 +154,10 @@
 
                 <div class="con-del">
                     <i></i>
-                    <span><a href="/quotation/del?qid=<?=$quo['quotation_id']?>" onclick="return dele('<?=$quo['enquiry_title']?>');">删除</a></span>
+                    <span><a href="/quotation/del?qid=<?php echo $quo['quotation_id'];?>" onclick="return dele('<?php echo $quo['enquiry_title'];?>');">删除</a></span>
                 </div>
                 <?php if($quo['reply_content']): ?>
-                    <p>回复&nbsp;:&nbsp;<?=$quo['reply_content']?></p>
+                    <p>回复&nbsp;:&nbsp;<?php echo $quo['reply_content'];?></p>
                 <?php else: ?>
                     <p>&nbsp;</p>
                 <?php endif; ?>

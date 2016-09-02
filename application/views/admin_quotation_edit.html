@@ -59,19 +59,19 @@
                 <table width="92%" class="table" style="">
                     <tbody>
                         <tr>
-                            <td>报价ID:<?=$quo['quotation_id']?></td>
+                            <td>报价ID:<?php echo $quo['quotation_id'];?></td>
                         </tr>
                         <tr>
-                            <td>报价标题:<?=$quo['enquiry_title']?></td>
+                            <td>报价标题:<?php echo $quo['enquiry_title'];?></td>
                         </tr>
                         <tr>
-                            <td>报价内容:<?=$quo['enquiry_content']?></td>
+                            <td>报价内容:<?php echo $quo['enquiry_content']?></td>
                         </tr>
                         <tr>
-                            <td>报价附件:<a href="<?=$quo['enquiry_file_path']?>" target="_blank"><?=$quo['enquiry_origin_name']?></a></td>
+                            <td>报价附件:<a href="<?php echo $quo['enquiry_file_path'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a></td>
                         </tr>
                         <tr>
-                            <td>价格:<input type="text" name="reply_price" value="<?=$quo['reply_price']?>" placeholder="请输入价格" class="number"></td>
+                            <td>价格:<input type="text" name="reply_price" value="<?php echo $quo['reply_price'];?>" placeholder="请输入价格" class="number"></td>
                         </tr>
                         <tr>
                             <td>
@@ -80,7 +80,7 @@
                                         <tr>
                                             <td>回复内容:</td>
                                             <td>
-                                                <textarea name="reply_content" cols="160" rows="20"><?=$quo['reply_content']?></textarea>
+                                                <textarea name="reply_content" cols="160" rows="20"><?php echo $quo['reply_content']; ?></textarea>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -91,7 +91,7 @@
                             <td>
                                 复价附件:
                                 <?php if($quo['reply_attach']): ?>
-                                    <a href="<?=$quo['reply_file_path']?>" target="_blank"><?=$quo['reply_origin_name']?></a>
+                                    <a href="<? echo $quo['reply_file_path']?>" target="_blank"><?php echo $quo['reply_origin_name']?></a>
                                 <?php endif; ?>
                                 <input type="file" name="reply_attach">
                             </td>

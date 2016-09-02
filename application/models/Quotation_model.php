@@ -31,7 +31,6 @@ class Quotation_model extends CI_Model{
         } else {
             return false;
         }
-//        $this->db->trans_complete();
     }
 
     public function get_front_quotation_list(){

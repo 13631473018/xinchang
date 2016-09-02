@@ -52,6 +52,12 @@ function wwww($val){
     fclose($fp);
 }
 
+
+/**
+ * 时区设置
+ */
+date_default_timezone_set('Asia/shanghai');
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -69,7 +75,7 @@ function wwww($val){
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+define('ENVIRONMENT','development');
 
 /*
  *---------------------------------------------------------------
