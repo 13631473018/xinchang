@@ -35,6 +35,13 @@ class Admin extends MY_Controller {
         $this->load->view('admin_quotation_list.html',array('list'=>$res));
     }
 
+    public function view_test(){
+
+        //参数是填要显示的模板名称
+        $this->load->view('admin_quotation_list_test.html');
+
+    }
+
     //回复报价
     public function quotation_edit(){
 

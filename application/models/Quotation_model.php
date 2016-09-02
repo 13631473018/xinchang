@@ -42,6 +42,7 @@ class Quotation_model extends CI_Model{
         if($res){
             foreach($res as &$r){
                 $r['addtime'] = date('d',$r['addtime']).'/'.date('m',$r['addtime']).'/'.date('y',$r['addtime']);
+                $r['file_origin_name'] = get_file_origin_name($r['enquiry_attach']);
                 unset($r);
             }
         }

@@ -21,10 +21,7 @@ if (!function_exists('is_ajax')) {
 
 }
 
-
-
 if (!function_exists('ip')) {
-
     /**
      * 获取请求ip
      *
@@ -74,6 +71,21 @@ if (!function_exists('ip')) {
         preg_match("/[\d\.]{7,15}/", $realip, $onlineip);
         $realip = !empty($onlineip [0]) ? $onlineip [0] : '0.0.0.0';
         return $realip;
+    }
+
+}
+
+//获取原文件名
+if(!function_exists('get_file_origin_name')){
+
+    //\upload\2016\09\02\_原文件名_aasgsg.jpg
+    function get_file_origin_name($path){
+        $start_pos = strpos($path,'_');
+        $end_pos = strrpos ($path,'_');
+        $origin_name = substr($path, $start_pos+1,$end_pos-1);
+        wwww($origin_name);
+        //die;
+
     }
 
 }

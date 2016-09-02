@@ -31,16 +31,19 @@ class file
             return $this;
         }
         if(!empty($this->f['tmp_name']) && $this->f['size'] != 0 && $this->f['error'] == 0 ){
-            $fileName = SYSTEM_TIME . uniqid();
-            $ext = strrchr($this->f['name'], '.');
-            $fileName .= $ext;
-            $save_absolute = $this->path.$fileName;
+            $file_info = pathinfo($this->f['name']);
+            $fileName = '_' . $file_info['filename'] . '_';
+            $fileName .= SYSTEM_TIME . uniqid();
+
+            $ext = $file_info['extension'];
+            $fileName .= '.' . $ext;
+            $save_absolute = $this->path . $fileName;
             if(move_uploaded_file($this->f['tmp_name'],$save_absolute)){
                 $this->newName = $fileName;
                 $this->originName = $this->f['name'];
                 $this->fileSize = $this->f['size'];
                 $this->fileExt = $ext;
-                $this->filePath = DS .$relate_save_path.$fileName;
+                $this->filePath = DS . $relate_save_path.$fileName;
                 return $this;
             }
         }
