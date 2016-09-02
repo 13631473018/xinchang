@@ -47,9 +47,9 @@
 		$ediHide.css("display","none");
 	});
 	//删除当前项目
-	$ediDel.click(function(){
-		$(this).parent().remove();
-	});
+	// $ediDel.click(function(){
+	// 	$(this).parent().remove();
+	// });
 	//关闭当前项目
 	$ediClose.click(function(){
 		$ediHide.css("display","none");
