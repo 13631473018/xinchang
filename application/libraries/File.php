@@ -24,7 +24,7 @@ class file
         $relate_save_path = 'upload' . DS .date('Y') .DS .date('m') .DS . date('d') . DS ;
         $this->path = ROOT_PATH . $relate_save_path ;
         if (!is_dir($this->path)) {
-            @mkdir($this->path, 0755, true);
+            @mkdir($this->path, 0777, true);
         }
         if( $this->f['size'] >$this->max_size){
             $this->err = array('err' => '文件不能大于5M');
