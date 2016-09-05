@@ -44,5 +44,9 @@ class Quotation extends MY_Controller {
         header('Location: /quotation/quotation');
     }
 
+    public function quotation_test(){
+        $this->load->view('quotation_quotation_test.html',array('quotation'=>$quotation));
+    }
+
 
 }
