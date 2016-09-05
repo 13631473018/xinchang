@@ -109,7 +109,7 @@
             <?php if($quo['enquiry_attach']) :?>
             <div>
                 <i class="file-icon"></i>
-                <a href="<?php echo $quo['file_path'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>
+                <a href="/index/get_file?path=<?php echo $quo['file_path'];?>&origin_name=<?php echo $quo['origin_name'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>
             </div>
             <?php endif;?>
 

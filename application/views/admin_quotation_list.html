@@ -138,14 +138,14 @@
             <li title="<?php echo $item['enquiry_content'];?>"><?php echo $item['enquiry_content'];?></li>
             <li>
                 <?php if($item['enquiry_attach']): ?>
-                    <a href="<?php echo $item['enquiry_file_path'];?>"><?php echo $item['enquiry_origin_name'];?></a>
+                    <a href="/index/get_file?path=<?php echo $item['enquiry_file_path'];?>&origin_name=<?php echo $item['enquiry_origin_name'];?>"><?php echo $item['enquiry_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
             </li>
             <li>
                 <?php if($item['reply_attach']): ?>
-                    <a href="<?php echo $item['reply_file_path'];?>"><?php echo $item['reply_origin_name'];?></a>
+                    <a href="/index/get_file?path=<?php echo $item['reply_file_path'];?>&origin_name=<?php echo $item['reply_origin_name'];?>"><?php echo $item['reply_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
