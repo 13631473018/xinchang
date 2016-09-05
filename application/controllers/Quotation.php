@@ -45,6 +45,8 @@ class Quotation extends MY_Controller {
     }
 
     public function quotation_test(){
+        $this->load->model('quotation_model','quotation');
+        $quotation = $this->quotation->get_front_quotation_list();
         $this->load->view('quotation_quotation_test.html',array('quotation'=>$quotation));
     }
 
