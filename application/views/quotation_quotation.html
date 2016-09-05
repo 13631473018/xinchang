@@ -125,7 +125,7 @@
                     <i class="con-need-add-close"></i>
                     <form action="/quotation/edit" method="post" enctype="multipart/form-data">
                         项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
-                        咨询日期：<span><?php $quo['addtime']; ?></span><br/>
+                        咨询日期：<span><?php echo $quo['addtime']; ?></span><br/>
                         <br/>
                         <span style="position: absolute;">项目描述：</span>
                         <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>

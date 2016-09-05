@@ -133,8 +133,8 @@
     <?php if($list): ?>
     <?php foreach($list as $item): ?>
         <ul>
-            <li class="on"><? echo $item['quotation_id']; ?></li>
-            <li><? echo $item['enquiry_title']; ?></li>
+            <li class="on"><?php echo $item['quotation_id']; ?></li>
+            <li><?php echo $item['enquiry_title']; ?></li>
             <li title="<?php echo $item['enquiry_content'];?>"><?php echo $item['enquiry_content'];?></li>
             <li>
                 <?php if($item['enquiry_attach']): ?>
