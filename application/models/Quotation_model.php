@@ -15,15 +15,18 @@ class Quotation_model extends CI_Model{
         $this->load->model('upload_file_model','upload_file');
         $enquiry_title = $this->input->post('enquiry_title',true);
         $enquiry_content = $this->input->post('enquiry_content',true);
-        $enquiry_attach = $_FILES['enquiry_attach'];
-        $upload_ojb = $this->file->upload_file($enquiry_attach);
-        $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
         $data = array(
             'enquiry_title'=>$enquiry_title,
             'enquiry_content'=>$enquiry_content,
-            'enquiry_attach'=>$upload_file_id,
             'addtime'=>SYSTEM_TIME,
         );
+        if(isset($_FILES['enquiry_attach'])){
+            $enquiry_attach = $_FILES['enquiry_attach'];
+            $upload_ojb = $this->file->upload_file($enquiry_attach);
+            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
+            $data['enquiry_attach'] = $upload_file_id;
+        }
+
         $result = $this->db->insert($this->_table,$data);
 
         if ($result) {
@@ -61,14 +64,16 @@ class Quotation_model extends CI_Model{
         $qid = $this->input->post('qid',true);
         $enquiry_title = $this->input->post('enquiry_title',true);
         $enquiry_content = $this->input->post('enquiry_content',true);
-        $enquiry_attach = $_FILES['enquiry_attach'];
-        $upload_ojb = $this->file->upload_file($enquiry_attach);
-        $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
         $data = array(
             'enquiry_title'=>$enquiry_title,
             'enquiry_content'=>$enquiry_content,
-            'enquiry_attach'=>$upload_file_id,
         );
+        if(isset($_FILES['enquiry_attach'])){
+            $enquiry_attach = $_FILES['enquiry_attach'];
+            $upload_ojb = $this->file->upload_file($enquiry_attach);
+            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
+            $data['enquiry_attach'] = $upload_file_id;
+        }
 
         $this->db->where(array('quotation_id'=>$qid));
         $result = $this->db->update($this->_table,$data);
