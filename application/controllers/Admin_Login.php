@@ -19,7 +19,7 @@ class Admin_Login extends MY_Controller {
             if($this->username != $username || $this->userpwd != $userpwd){
                 $data = array(
                     'code' => -1,
-                    'url' => '/admin_login/login',
+                    'url' => '/Admin_Login/login',
                 );
                 die(json_encode($data));
             }
@@ -28,7 +28,7 @@ class Admin_Login extends MY_Controller {
                 'code' => 1,
                 'url' => '/admin/quotation_list',
             );
-            $this->session->set_userdata('auth_admin_login',1);
+            $_SESSION['auth_admin_login'] = 1;
             die(json_encode($data));
         }
         $this->load->view('admin_login_login.html');
