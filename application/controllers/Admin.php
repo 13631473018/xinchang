@@ -36,7 +36,7 @@ class Admin extends MY_Controller {
                 $r['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
             }
             if($r['reply_attach']){
-                $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['enquiry_attach']);
+                $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['reply_attach']);
                 $r['reply_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
                 $r['reply_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
             }
@@ -62,15 +62,18 @@ class Admin extends MY_Controller {
             $this->load->library('file');
             $price = trim($this->input->post('reply_price','trim'));
             $reply_content = trim($this->input->post('reply_content','trim'));
-            $reply_attach = $_FILES['reply_attach'];
-            $upload_ojb = $this->file->upload_file($reply_attach);
-            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
             $data = array(
                 'reply_price'=>$price,
                 'reply_content'=>$reply_content,
-                'reply_attach'=>$upload_file_id,
                 'is_reply'=>1,
             );
+            if(isset($_FILES['reply_attach'])){
+                $reply_attach = $_FILES['reply_attach'];
+                $upload_ojb = $this->file->upload_file($reply_attach);
+                $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
+                $data['reply_attach'] = $upload_file_id;
+            }
+
             $this->p->db->where(array('quotation_id'=>$qid));
             $result = $this->p->db->update('quotation',$data);
             if($result){
