@@ -37,7 +37,7 @@ class file
             $fileName .= '.' . $ext;
             $save_absolute = $this->path . $fileName;
 
-            if(!move_uploaded_file($this->f['tmp_name'],$save_absolute)){
+            if(move_uploaded_file($this->f['tmp_name'],$save_absolute)){
                 $this->newName = $fileName;
                 $this->originName = $this->f['name'];
                 $this->fileSize = $this->f['size'];
