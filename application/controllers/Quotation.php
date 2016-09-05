@@ -8,7 +8,6 @@ class Quotation extends MY_Controller {
     }
 
     public function quotation(){
-
         $this->load->model('quotation_model','quotation');
         $quotation = $this->quotation->get_front_quotation_list();
         $this->load->view('quotation_quotation.html',array('quotation'=>$quotation));
