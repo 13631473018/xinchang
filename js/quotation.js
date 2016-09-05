@@ -15,35 +15,57 @@
 })();
 //点击弹窗
 (function(){
-	var $addBtn = $(".content .content-add");
-	var $add = $(".content .con-need-add");
-	var $addClose = $(".content .con-need-add .con-need-add-close");
-	var $save = $(".box .content .con-need-add .add-submit");
-	var $saveSuccess = $(".box .content .con-keepSuccess");
-	var $savaSuccessEnter = $(".box .content .con-keepSuccess>span");
-	var $ediHide = $(".box .content .con-need .con-edi-hide");
-	var $ediBtn = $(".box .content .con-need .con-edi");
-	var $ediSave = $(".box .content .con-need .con-edi-hide .add-submit");
-	var $ediClose =$(".box .content .con-need .con-edi-hide .close");
+	var $addBtn = $(".content-add");
+	var $add = $(".con-need-add");
+	var $addClose = $(" .con-need-add .con-need-add-close");
+	var $save = $(".con-need-add .add-submit");
+	var $ediHide = $(".con-edi-hide");
+	var $ediBtn = $(".con-need .con-edi");
+	var $ediSave = $(".con-edi-hide .add-submit");
+	var $ediClose =$(".con-edi-hide .close");
+	var $ediFullScreen = $(".edi-fullScreen");
+	var $addFullScreen = $(".add-fullScreen");
+	var $wrapHeight = $(".wrap").height();
+	var $box = $(".box").height();
+	//alert( typeof $wrapHeight );
+	//alert( typeof $box );
 	//增加项目
 	$addBtn.click(function(){
 		$add.css("transform","scale(1)");
+		$addFullScreen.css({
+			height : $box+$wrapHeight,
+			display : "block"
+		});
 	});
 	//关闭项目
 	$addClose.click(function(){
 		$add.css("transform","scale(0)");
+		$addFullScreen.css({
+			display : "none"
+		});
 	});
 	//保存项目
 	$save.click(function(){
 		$add.css("transform","scale(0)");
+		$addFullScreen.css({
+			display : "none"
+		});
 	});
 	//编辑当前项目
 	$ediBtn.click(function(){
-		$(this).parent().find(".con-edi-hide").css("display","block");
+		$ediFullScreen.css({
+			height : $box+$wrapHeight,
+			display : "block"
+		});
+		$ediHide.css("display","block");
+		//alert($ediFullScreen)
 	});
 	//保存当前项目
 	$ediSave.click(function(){
 		$ediHide.css("display","none");
+		$ediFullScreen.css({
+			display : "none"
+		});
 	});
 	//删除当前项目
 	// $ediDel.click(function(){
@@ -52,6 +74,9 @@
 	//关闭当前项目
 	$ediClose.click(function(){
 		$ediHide.css("display","none");
+		$ediFullScreen.css({
+			display : "none"
+		});
 	});
 	// $savaSuccessEnter.click(function(){
 	// 	$saveSuccess.css("transform","scale(0)")

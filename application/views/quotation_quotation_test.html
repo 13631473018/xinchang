@@ -102,40 +102,8 @@
 
     <div class="content">
         <span class="content-add">+</span>
-        <div class="con-need-add">
-            <i class="con-need-add-close"></i>
-            <form action="/quotation/add" method="post" enctype="multipart/form-data">
-                项目名称：<input type="text" class="project-name" name="enquiry_title"><br/><br/>
-                咨询日期：<span><?php echo date('d/m/y');?></span><br/>
-                <br/>
-                <span style="position: absolute;">项目描述：</span>
-                <textarea name="enquiry_content" cols="30" rows="10" class="need-miaoshu"></textarea>
-                <input type="submit" class="add-submit" value="save"><br/>
-                <i class="file-icon"></i>
-                <input type="file" class="file-input" name="enquiry_attach" multiple="true">
-            </form>
-        </div><!--
-			<div class="con-keepSuccess">
-				<div class="con-keepSuccess-tip">保存成功</div>
-				<span>确定</span>
-			</div> -->
         <?php foreach($quotation as $quo): ?>
             <div class="con-need">
-                <div class="con-edi-hide">
-                    <i class="con-need-add-close"></i>
-                    <form action="/quotation/edit" method="post" enctype="multipart/form-data">
-                        项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
-                        咨询日期：<span><?php $quo['addtime']; ?></span><br/>
-                        <br/>
-                        <span style="position: absolute;">项目描述：</span>
-                        <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
-                        <div class="add-submit"><input type="submit" value="save"></div><br/>
-                        <i class="close"></i>
-                        <i class="file-icon"></i>
-                        <input type="file" name="enquiry_attach" class="file-input" multiple="true">
-                        <input type="hidden" name="qid" value="<?php echo $quo['quotation_id'];?>">
-                    </form>
-                </div>
                 <p class="con-title"><?php echo $quo['enquiry_title'];?></p>
                 <p><?php echo $quo['enquiry_content'];?></p>
                 <?php if($quo['enquiry_attach']) :?>
@@ -164,7 +132,38 @@
             </div>
         <?php endforeach; ?>
     </div>
-
+</div>
+<div class="edi-fullScreen">
+    <div class="con-edi-hide">
+        <i class="con-need-add-close"></i>
+        <form action="/quotation/edit" method="post" enctype="multipart/form-data">
+            项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
+            咨询日期：<span><?php $quo['addtime']; ?></span><br/>
+            <br/>
+            <span style="position: absolute;">项目描述：</span>
+            <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
+            <div class="add-submit"><input type="submit" value="save"></div><br/>
+            <i class="close"></i>
+            <i class="file-icon"></i>
+            <input type="file" name="enquiry_attach" class="file-input" multiple="true">
+            <input type="hidden" name="qid" value="<?php echo $quo['quotation_id'];?>">
+        </form>
+    </div>
+</div>
+<div class="add-fullScreen">
+     <div class="con-need-add">
+        <i class="con-need-add-close"></i>
+        <form action="/quotation/add" method="post" enctype="multipart/form-data">
+            项目名称：<input type="text" class="project-name" name="enquiry_title"><br/><br/>
+            咨询日期：<span><?php echo date('d/m/y');?></span><br/>
+            <br/>
+            <span style="position: absolute;">项目描述：</span>
+            <textarea name="enquiry_content" cols="30" rows="10" class="need-miaoshu"></textarea>
+            <input type="submit" class="add-submit" value="save"><br/>
+            <i class="file-icon"></i>
+            <input type="file" class="file-input" name="enquiry_attach" multiple="true">
+        </form>
+    </div>
 </div>
 <script src="/js/quotation.js"></script>
 </body>

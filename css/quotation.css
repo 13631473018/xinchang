@@ -1,6 +1,7 @@
-body{
-	font-family: "Microsoft yahei";
-	font-size: 12px;
+
+html,body,.edi-fullScreen{
+	width:100%;
+	height:100%;
 }
 .wrap{
 	width:980px;
@@ -172,23 +173,24 @@ body{
 	right:20px;
 	cursor: pointer;
 }
-.box .content .con-need .con-edi-hide{
+.con-edi-hide{
 	width:600px;
 	height:266px;
-	background: #888;
-	position: absolute;
-	bottom:0;
+	background:#b3b3b3;
+	position: fixed;
+	top:50%;
 	left:50%;
 	margin-left:-300px;
+	margin-top:-133px;
 	padding: 24px 0 0 30px;
-	display: none;
 	border-radius: 10px;
 	-o-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	z-index: 5;
+	display: none;
 }
-.box .content .con-need .con-edi-hide .close{
+.con-edi-hide .close{
 	display: inline-block;
 	width:20px;
 	height:20px;
@@ -220,7 +222,7 @@ body{
 	height:16px;
 	background:url(../images/quotation/del.png);
 }
-.box .content .con-need-add{
+.con-need-add{
 	background:#e4e4e4;
 	position: fixed;
     top: 50%;
@@ -238,10 +240,10 @@ body{
     padding: 40px 0 0 30px;
     z-index: 10;
 }
-.box .content .con-need-add .project-name{
+.project-name{
 	width:230px;
 }
-.box .content .con-need-add .con-need-add-close{
+.con-need-add .con-need-add-close{
 	display: inline-block;
     width: 64px;
     height: 64px;
@@ -251,12 +253,12 @@ body{
     background: url(../images/wish/close.png);
     cursor: pointer;
 }
-.box .content .con-need-add .need-miaoshu,.box .content .con-need .con-edi-hide .need-miaoshu{
+.con-need-add .need-miaoshu,.con-edi-hide .need-miaoshu{
 	margin:18px 0 0 60px;
 	height:100px;
 }
 textarea{ resize:none;}
-.box .content .con-need-add .add-submit,.box .content .con-need .con-edi-hide .add-submit{
+.con-need-add .add-submit,.add-submit{
 	width:50px;
 	height:20px;
 	background-image: linear-gradient(#FFE000,#F8B72B);
@@ -274,38 +276,21 @@ textarea{ resize:none;}
 	text-align: center;
 	line-height: 20px;
 }
-.box .content .con-need .con-edi-hide .add-submit:hover{
+.con-edi-hide .add-submit:hover{
 	background: #4C90BC;
 }
 .box .content .add-submit:hover{
 	background: #4C90BC;
 }
-.box .content .con-need-add .file-icon{
+.con-need-add .file-icon{
 	left:17px;
 	top:3px;
 }
-.box .content .con-need-add .file-input,.box .content .con-need .con-edi-hide .file-input{
+.con-need-add .file-input,.con-edi-hide .file-input{
 	margin-left:41px;
 }
-.box .content .con-need-add .file-input:hover{
+.con-need-add .file-input:hover{
 	cursor: pointer;
-}
-.box .content .con-keepSuccess{
-	background: #e9e9e9;
-	height:136px;
-	width: 230px;
-	position: fixed;
-	left:50%;
-	margin-left:-115px;
-	top:50%;
-	margin-top:-68px;
-	z-index:10;
-	border-radius: 10px;
-	-o-border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	display: none;
-
 }
 /*.box .content .con-keepSuccess-tip{
 	text-align: center;
@@ -339,3 +324,14 @@ textarea{ resize:none;}
     background-image: -moz-linear-gradient(#FFF100,#ffff00);
     background-image: -webkit-linear-gradient(#FFF100,#ffff00);
 }*/
+.edi-fullScreen,.add-fullScreen{
+	width:100%;
+	position: absolute;
+	left:0;
+	top:0;
+	z-index:3;
+	background: rgba(0,0,0,.6);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
+	display: none;
+	transition: all .3s;
+}

@@ -38,7 +38,11 @@ button, input, select, textarea { font-size: 100%; line-height:normal; } /* 使�
 
 /** 重置表格元素 **/
 table{ border-collapse: collapse; border-spacing: 0; }
-input[type="button"],input[type="submit"],input[type="reset"]{cursor:pointer;}
+input[type="button"],input[type="submit"],input[type="reset"]{
+	cursor:pointer;
+	border:none;
+	background:transparent;
+}
 
 /* ie6 7 8(q) bug  */
 iframe{
