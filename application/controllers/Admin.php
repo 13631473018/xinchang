@@ -7,8 +7,8 @@ class Admin extends MY_Controller {
 
     public function __construct(){
         parent::__construct();
-        if(!$this->session->userdata('auth_admin_login')){
-            header("Location: /admin_login/login");
+        if(!isset($_SESSION['auth_admin_login'])){
+            header("Location: /Admin_Login/login");
         }
         $this->load->model('public_model', 'p');
     }
