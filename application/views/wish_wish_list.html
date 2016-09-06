@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="/css/reset.css" type="text/css">
     <link rel="stylesheet" href="/css/public.css" type="text/css">
     <script src="/js/jquery-1.12.1.min.js"></script>
-    <script src="/js/common.js"></script>
-    <script src="/js/wish.js"></script>
 
 </head>
 
@@ -138,6 +136,70 @@
                             <span>编辑</span><i class="icon3"></i>
                         </div>
                     </div>
+                    <!--报价弹出-->
+		            <div class="consult-wrap">
+		                <div class="price-w-t clearfix">
+		                    <img src="/images/wish/list5.jpg" alt="" width="200" height="205" class="price-w-t-img" />
+		                    <div>
+		                        <span class="p-name"></span>
+		                        <span class="time"></span>
+		                        <p></p>
+		                    </div>
+		                </div>
+		                <div class="price-w-b">
+		                    <div class="price-w-b-t">
+		                        Quotation
+		                    </div>
+		                    <div class="price-w-b-b">
+		                        <span>Seller&nbsp;:&nbsp;kagasdfs</span>
+		                        <span>Phone&nbsp;:&nbsp;321654987</span>
+		                        <span>Time&nbsp;:&nbsp;dd/mm/yy XX:XX</span>
+		                        <div class="split"></div>
+		                        <div class="file-wrap">
+		                            <i></i>
+		                            <span>Attachment:</span>
+		                            <input type="file" />
+		                        </div>
+		                    </div>
+		                </div>
+		                <i class="consult-wrapw-split-line-close"></i>
+		            </div>
+		             <!--评论弹出-->
+		            <div class="price-wrap">
+		                <div class="price-w-t clearfix">
+		                    <img src="/images/wish/list5.jpg" alt="" width="200" height="205" class="price-w-t-img" />
+		                    <div>
+		                        <span class="p-name"></span>
+		                        <span class="time"></span>
+		                        <p class="describe"></p>
+		                    </div>
+		                </div>
+		                <div class="price-w-b">
+		                    <div class="price-w-b-t">
+		                        Quotation
+		                    </div>
+		                    <div class="price-w-b-b">
+		                        <div class="dialog-wrap"></div>
+		                        <input type="text" />
+		                        <span>发送</span>
+		                    </div>
+		                </div>
+		                <i class="price-wrap-close"></i>
+		            </div>
+
+		            <!--编辑弹出-->
+		            <div class="editor">
+		                <div class="eidtor-con clearfix">
+		                    <img src="/images/wish/list6.jpg" alt="" width="200" height="205" class="eidtor-con-img fl" />
+		                    <div class="eidtor-con-change fl">
+		                        <input id="editor_wish_title" type="text" placeholder="请输入愿望主题" class="p-name" />
+		                        <span class="time"></span>
+		                        <textarea id="editor_wish_content" cols="30" rows="10"></textarea>
+		                    </div>
+		                </div>
+		                <i class="price-wrap-close"></i>
+		                <span class="editor-save">save</span>
+		            </div>
                 </div>
             <?php endforeach; ?>
             <?php endif; ?>
@@ -151,77 +213,17 @@
                 <iframe name="_XinChang_" style="display:none;"></iframe>
             </div>
 
-            <!--报价弹出-->
-            <div class="consult-wrap">
-                <div class="price-w-t clearfix">
-                    <img src="/images/wish/list5.jpg" alt="" width="200" height="205" class="price-w-t-img" />
-                    <div>
-                        <span class="p-name"></span>
-                        <span class="time"></span>
-                        <p></p>
-                    </div>
-                </div>
-                <div class="price-w-b">
-                    <div class="price-w-b-t">
-                        Quotation
-                    </div>
-                    <div class="price-w-b-b">
-                        <span>Seller&nbsp;:&nbsp;kagasdfs</span>
-                        <span>Phone&nbsp;:&nbsp;321654987</span>
-                        <span>Time&nbsp;:&nbsp;dd/mm/yy XX:XX</span>
-                        <div class="split"></div>
-                        <div class="file-wrap">
-                            <i></i>
-                            <span>Attachment:</span>
-                            <input type="file" />
-                        </div>
-                    </div>
-                </div>
-                <i class="consult-wrapw-split-line-close"></i>
-            </div>
+            
 
-            <!--评论弹出-->
-            <div class="price-wrap">
-                <div class="price-w-t clearfix">
-                    <img src="/images/wish/list5.jpg" alt="" width="200" height="205" class="price-w-t-img" />
-                    <div>
-                        <span class="p-name"></span>
-                        <span class="time"></span>
-                        <p class="describe"></p>
-                    </div>
-                </div>
-                <div class="price-w-b">
-                    <div class="price-w-b-t">
-                        Quotation
-                    </div>
-                    <div class="price-w-b-b">
-                        <div class="dialog-wrap"></div>
-                        <input type="text" />
-                        <span>发送</span>
-                    </div>
-                </div>
-                <i class="price-wrap-close"></i>
-            </div>
-
-            <!--编辑弹出-->
-            <div class="editor">
-                <div class="eidtor-con clearfix">
-                    <img src="/images/wish/list6.jpg" alt="" width="200" height="205" class="eidtor-con-img fl" />
-                    <div class="eidtor-con-change fl">
-                        <input id="editor_wish_title" type="text" placeholder="请输入愿望主题" class="p-name" />
-                        <span class="time"></span>
-                        <textarea id="editor_wish_content" cols="30" rows="10"></textarea>
-                    </div>
-                </div>
-                <i class="price-wrap-close"></i>
-                <span class="editor-save">save</span>
-            </div>
+           
         </div>
         <div class="w-f">
             <img src="/images/wish/fonter.jpg" alt="" width="1098" height="" />
         </div>
     </div>
 </div>
+    <script src="/js/common.js"></script>
+    <script src="/js/wish.js"></script>
 </body>
 </html>
 
