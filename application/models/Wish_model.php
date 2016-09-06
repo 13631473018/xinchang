@@ -28,12 +28,13 @@ class Wish_model extends CI_Model{
 
     }
 
-    public function get_front_with_list(){
+    public function get_front_wish_list(){
         $this->load->model('upload_file_model','upload_file');
         $this->db->select('*');
         $this->db->from($this->_table);
         $this->db->where(array('is_deleted'=>0));
         $this->db->limit(0,12);
+        $this->db->order_by('wish_id','DESC');
         $res =  $this->db->get()->result_array();
         if($res){
             foreach($res as &$r){
@@ -50,7 +51,7 @@ class Wish_model extends CI_Model{
 
     //前台编辑愿望
     public function edit_wish_list_from_front(){
-        $wish_id = $this->input->post('wish_id',true);
+        $wish_id = $this->input->post('edit_wish_id',true);
         $edit_wish_title = $this->input->post('edit_wish_title',true);
         $edit_wish_content = $this->input->post('edit_wish_content',true);
         $data = array(

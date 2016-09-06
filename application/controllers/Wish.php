@@ -10,7 +10,7 @@ class Wish extends MY_Controller{
 
     public function wish_list(){
 
-        $wish= $this->wish->get_front_with_list();
+        $wish= $this->wish->get_front_wish_list();
         $this->load->view('wish_wish_list.html',array('wish'=>$wish));
     }
 

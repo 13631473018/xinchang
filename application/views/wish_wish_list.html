@@ -181,7 +181,7 @@
 		                    <div class="price-w-b-b">
 		                        <div class="dialog-wrap"></div>
 		                        <input type="text" />
-		                        <span>发送</span>
+		                        <span>保存</span>
 		                    </div>
 		                </div>
 		                <i class="price-wrap-close"></i>
@@ -189,16 +189,20 @@
 
 		            <!--编辑弹出-->
 		            <div class="editor">
-		                <div class="eidtor-con clearfix">
-		                    <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="eidtor-con-img fl" />
-		                    <div class="eidtor-con-change fl">
-		                        <input id="editor_wish_title" type="text" placeholder="请输入愿望主题" class="p-name" />
-		                        <span class="time"></span>
-		                        <textarea id="editor_wish_content" cols="30" rows="10"></textarea>
-		                    </div>
-		                </div>
-		                <i class="price-wrap-close"></i>
-		                <span class="editor-save">save</span>
+                        <form action="/wish/edit_wish_list" target="_edit_wish_list_" method="post">
+                            <div class="eidtor-con clearfix">
+                                <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="eidtor-con-img fl" />
+                                <div class="eidtor-con-change fl">
+                                    <input name="edit_wish_title" type="text" placeholder="请输入愿望主题" class="p-name" />
+                                    <span class="time"></span>
+                                    <textarea name="edit_wish_content" cols="30" rows="10"><?php echo $ws['content']; ?></textarea>
+                                    <input type="hidden" name="edit_wish_id" value="<?php echo $ws['wish_id']; ?>">
+                                </div>
+                            </div>
+                            <i class="price-wrap-close"></i>
+                            <span class="editor-save"><input type="submit" value="save"></span>
+                        </form>
+                        <iframe name="_edit_wish_list_" style="display:none;"></iframe>
 		            </div>
                 </div>
             <?php endforeach; ?>
