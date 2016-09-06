@@ -287,6 +287,7 @@ body{
 	-webkit-border-radius: 10px;
 	transform: scale(0);
 	transition:all .5s;
+	z-index: 2;
 }
 .wrap .w-main .editor{
 	transform: scale(0);

@@ -17,7 +17,7 @@
 		$projectName.text( thisName );
 		$projectTime.text( thisTime );
 		$editor.removeClass("on");
-		$priceWrap.removeClass("on")
+		$priceWrap.removeClass("on");
 	});
 	$close.click(function(){
 		$consultWrap.removeClass("on");
