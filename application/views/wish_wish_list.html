@@ -142,7 +142,7 @@
 		                    <img src="/images/wish/list5.jpg" alt="" width="200" height="205" class="price-w-t-img" />
 		                    <div>
 		                        <span class="p-name"></span>
-		                        <span class="time"></span>
+		                        <span class="time"><?php echo $ws['addtime'];?></span>
 		                        <p></p>
 		                    </div>
 		                </div>
@@ -170,7 +170,7 @@
 		                    <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="price-w-t-img" />
 		                    <div>
 		                        <span class="p-name"></span>
-		                        <span class="time"></span>
+		                        <span class="time"><?php echo $ws['addtime'];?></span>
 		                        <p class="describe"></p>
 		                    </div>
 		                </div>
@@ -194,7 +194,7 @@
                                 <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="eidtor-con-img fl" />
                                 <div class="eidtor-con-change fl">
                                     <input name="edit_wish_title" type="text" placeholder="请输入愿望主题" class="p-name" />
-                                    <span class="time"></span>
+                                    <span class="time"><?php echo $ws['addtime'];?></span>
                                     <textarea name="edit_wish_content" cols="30" rows="10"><?php echo $ws['content']; ?></textarea>
                                     <input type="hidden" name="edit_wish_id" value="<?php echo $ws['wish_id']; ?>">
                                 </div>
