@@ -386,6 +386,8 @@ body{
 	overflow: hidden;
 	height:115px;
 	padding: 5px 5px 0 0;
+	overflow: auto;
+	overflow-x: hidden;
 }
 .wrap .w-main .price-wrap .price-w-b-b .dialog-wrap>span{
 	background:#fff;
