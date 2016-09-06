@@ -51,9 +51,17 @@ class Wish_model extends CI_Model{
 
     //前台编辑愿望
     public function edit_wish_list_from_front(){
-        $wish_id = $this->input->post('edit_wish_id',true);
+        $wish_id = $this->input->get('wish_id',true);
+        if(!$wish_id){
+            do_frame('参数错误！');
+        }
         $edit_wish_title = $this->input->post('edit_wish_title',true);
+        $edit_wish_title = $edit_wish_title[$wish_id];
         $edit_wish_content = $this->input->post('edit_wish_content',true);
+        $edit_wish_content = $edit_wish_content[$wish_id];
+        if(!$edit_wish_title || !$edit_wish_content){
+            do_frame('输入不能为空！');
+        }
         $data = array(
             'title' => $edit_wish_title,
             'content' => $edit_wish_content,
@@ -61,6 +69,17 @@ class Wish_model extends CI_Model{
         $this->db->where(array('wish_id'=>$wish_id));
         $result = $this->db->update($this->_table,$data);
         return $result;
+    }
+
+    //前台增加评论
+    public function add_wish_comment_from_front(){
+        $wish_id = $this->input->get('wish_id',true);
+        if(!$wish_id){
+            do_frame('参数错误！');
+        }
+        $add_wish_comment = $this->input->post('add_wish_comment',true);
+        $add_wish_comment = $add_wish_comment[$wish_id];
+        wwww($add_wish_comment);
     }
 
 

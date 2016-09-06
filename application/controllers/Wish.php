@@ -39,5 +39,15 @@ class Wish extends MY_Controller{
         }
     }
 
+    //添加评论
+    public function add_wish_comment(){
+        if(IS_POST){
+            $res = $this->wish->add_wish_comment_from_front();
+            if($res){
+                do_frame('编辑愿望成功！');
+            }
+        }
+    }
+
 
 }
