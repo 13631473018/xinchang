@@ -15,7 +15,7 @@
 		var thisTime = $(this).parent().parent().find(".time").text();
 		$oImg.prop("src",src);
 		$projectName.text( thisName );
-		$projectTime.text( thisTime );
+		// $projectTime.text( thisTime );
 		$editor.removeClass("on");
 		$priceWrap.removeClass("on");
 	});
@@ -64,7 +64,7 @@
 		var thisTime = $(this).parent().parent().find(".time").text();
 		$oImg.prop("src",src);
 		$projectName.text( thisName );
-		$projectTime.text( thisTime );
+		// $projectTime.text( thisTime );
 		$input.focus();
 		$editor.removeClass("on");
 		$consultWrap.removeClass("on");
@@ -96,7 +96,7 @@
 			var thisTime = $(this).parent().parent().find(".time").text();
 			$oImg.prop("src",src);
 			$projectName1.val( thisName );
-			$projectTime1.text( thisTime );
+			// $projectTime1.text( thisTime );
 			$priceWrap.removeClass("on");
 			$consultWrap.removeClass("on");
 			//console.log( $(this).parent().parent().eq(index) );
