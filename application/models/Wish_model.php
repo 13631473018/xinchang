@@ -48,5 +48,19 @@ class Wish_model extends CI_Model{
         return $res;
     }
 
+    //前台编辑愿望
+    public function edit_wish_list_from_front(){
+        $wish_id = $this->input->post('wish_id',true);
+        $edit_wish_title = $this->input->post('edit_wish_title',true);
+        $edit_wish_content = $this->input->post('edit_wish_content',true);
+        $data = array(
+            'title' => $edit_wish_title,
+            'content' => $edit_wish_content,
+        );
+        $this->db->where(array('wish_id'=>$wish_id));
+        $result = $this->db->update($this->_table,$data);
+        return $result;
+    }
+
 
 }

@@ -20,12 +20,14 @@ class Index extends MY_Controller {
         }
         $absolute_path =  substr(ROOT_PATH,0,-1) . $path;
         if(is_file($absolute_path)){
-            $file = fopen($absolute_path, 'r');
+            $file = fopen($absolute_path, 'rb');
             header('Content-Type: application/octet-stream');
             header('Accept-Ranges: bytes');
             header('Accept-Length: '.filesize($absolute_path));
             header('Content-Disposition: attachment; filename='.$origin_name);
-            echo fread($file, filesize($absolute_path));
+            while(!feof($file) && ($bin = fread($file,1024)) !== false ){
+                echo $bin;
+            }
             fclose($file);
             exit;
         }else{
@@ -42,18 +44,22 @@ class Index extends MY_Controller {
         if(is_file($absolute_path)){
             $info = getimagesize($absolute_path);
             if ($info === false) {
-                $file = fopen($absolute_path, "r");
+                $file = fopen($absolute_path, "rb");
                 header('Content-type: application/octet-stream');
                 header('Accept-Ranges: bytes');
                 header('Accept-Length: '.filesize($path));
                 header('Content-Disposition: attachment; filename='.time().strtolower(strrchr($absolute_path, '.')));
-                echo fread($file, filesize($absolute_path));
+                while(!feof($file) && ($bin = fread($file,1024)) !== false ){
+                    echo $bin;
+                }
                 fclose($file);
                 exit;
             } else {
                 header('Content-type:'.$info['mime']);
                 $file = fopen($absolute_path, "rb");
-                echo fread($file, filesize($absolute_path));
+                while(!feof($file) && ($bin = fread($file,1024)) !== false ){
+                    echo $bin;
+                }
                 fclose($file);
                 exit;
             }
