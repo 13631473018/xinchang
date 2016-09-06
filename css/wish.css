@@ -342,7 +342,7 @@ body{
 	color:#fff;
 }
 .wrap .w-main .price-wrap .price-w-b-b,.wrap .w-main .consult-wrap .price-w-b-b{
-	height:150px;
+	height:160px;
 	background: #fff;
 	width:735px;
 	margin:2px auto;
@@ -380,7 +380,7 @@ body{
 }
 .wrap .w-main .price-wrap .price-w-b-b .dialog-wrap{
 	width:98%;
-	margin:2px auto;
+	margin:6px auto;
 	background: #DCDCDD;
 	border-radius:10px;
 	overflow: hidden;
