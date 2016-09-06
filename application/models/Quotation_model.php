@@ -28,7 +28,6 @@ class Quotation_model extends CI_Model{
         }
 
         $result = $this->db->insert($this->_table,$data);
-
         if ($result) {
             return $this->db->insert_id();
         } else {

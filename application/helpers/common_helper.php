@@ -92,3 +92,18 @@ if(!function_exists('get_file_origin_name')){
     }
 
 }
+
+//是否图片
+if(!function_exists('is_images')){
+    function is_images($type){
+        $pos = strpos($type,'image');
+        return $pos !== false;
+    }
+}
+
+if(!function_exists('do_frame')){
+    function do_frame($msg,$url=''){
+        echo('<script type="text/javascript">window.top.window.iResultAlter(\'' . $msg . '\',\'' . $url .'\');</script>');
+        exit();
+    }
+}
