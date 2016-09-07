@@ -73,7 +73,7 @@
 	$close.click(function(){
 		$priceWrap.removeClass("on");
 	});
-
+	//点击编辑
 	//var $editor = $(".wrap .w-main .editor");
 	var $editorBtn = $(".wrap .w-main .list .list-bottom .icon-wrap3");
 	var $close1 = $(".wrap .w-main .editor .price-wrap-close");
@@ -91,10 +91,10 @@
 		console.log( ThisList );
 		$editorBtn.click(function(){
 			$editor.addClass("on");
-			var src = $(this).parent().parent().find("img").attr("src");
+			var src = $(this).parent().parent().find(".list-top>img").attr("src");
 			var thisName = $(this).parent().parent().find(".projectName").text();
 			var thisTime = $(this).parent().parent().find(".time").text();
-			$oImg.prop("src",src);
+			$oImg1.prop("src",src);
 			$projectName1.val( thisName );
 			// $projectTime1.text( thisTime );
 			$priceWrap.removeClass("on");
