@@ -9,10 +9,11 @@
 	var $editor = $(".wrap .w-main .editor");
 	var $priceWrap = $(".wrap .w-main .price-wrap");
 	$comment.click(function(){
-		$consultWrap.addClass("on");
+		//$consultWrap.addClass("on");
+		$(this).parent().parent().find(".consult-wrap").addClass("on");
 		var src = $(this).parent().parent().find("img").attr("src");
 		var thisName = $(this).parent().parent().find(".projectName").text();
-		var thisTime = $(this).parent().parent().find(".time").text();
+		var thisTime = $(this).parent().parent().find(".list-top .time").text();
 		$oImg.prop("src",src);
 		$projectName.text( thisName );
 		// $projectTime.text( thisTime );
@@ -58,10 +59,11 @@
 
 	//点击评论按钮
 	$comment.click(function(){
-		$priceWrap.addClass("on");
+		//$priceWrap.addClass("on");
+		$(this).parent().parent().find(".price-wrap").addClass("on");
 		var src = $(this).parent().parent().find("img").attr("src");
 		var thisName = $(this).parent().parent().find(".projectName").text();
-		var thisTime = $(this).parent().parent().find(".time").text();
+		var thisTime = $(this).parent().parent().find(".list-top .time").text();
 		$oImg.prop("src",src);
 		$projectName.text( thisName );
 		// $projectTime.text( thisTime );
@@ -87,20 +89,21 @@
 	var $list = $(".wrap .w-main .list");
 	
 	$list.mouseenter(function(){
-		var ThisList = $(this) ;
-		console.log( ThisList );
+		//var ThisList = $(this) ;
+		//console.log( ThisList );
 		$editorBtn.click(function(){
-			$editor.addClass("on");
+			//$editor.addClass("on");
+			$(this).parent().parent().find(".editor").addClass("on");
 			var src = $(this).parent().parent().find(".list-top>img").attr("src");
 			var thisName = $(this).parent().parent().find(".projectName").text();
-			var thisTime = $(this).parent().parent().find(".time").text();
+			var thisTime = $(this).parent().parent().find(".list-top .time").text();
 			$oImg1.prop("src",src);
 			$projectName1.val( thisName );
 			// $projectTime1.text( thisTime );
 			$priceWrap.removeClass("on");
 			$consultWrap.removeClass("on");
 			//console.log( $(this).parent().parent().eq(index) );
-			console.log( ThisList );
+			//console.log( ThisList );
 			$save.click(function(){
 				var describe1 = $(this).parent().find("#eidtor-con-change-bj").val();
 				//describe1.appdendTo(ThisList.find(""));
@@ -109,9 +112,6 @@
 	});
 	$close1.click(function(){
 		$editor.removeClass("on");
-	});
-	$save.click(function(){
-		 
 	});
 })();
 
