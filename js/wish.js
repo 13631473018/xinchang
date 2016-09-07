@@ -53,7 +53,7 @@
 		//alert( $dialogWrap )
 		var $createDiv = $("<div style='color:#666;height:30px;text-align:right;padding-left:5px;'>"+"<span style='border:1px solid #333;background:#666;color:#fff;;display:inline-block;border-radius:3px;padding:0 4px;'>"+$dialogTxt.val()+"</span>"+"</div>");
 		$(this).parent().find(".dialog-wrap").append($createDiv);
-		$dialogTxt.val("");
+		//$dialogTxt.val("");
 		//$dialogTxt.val() = "";
 	});
 
@@ -63,7 +63,7 @@
 		$(this).parent().parent().find(".price-wrap").addClass("on");
 		var src = $(this).parent().parent().find("img").attr("src");
 		var thisName = $(this).parent().parent().find(".projectName").text();
-		var thisTime = $(this).parent().parent().find(".list-top .time").text();
+		//var thisTime = $(this).parent().parent().find(".list-top .time").text();
 		$oImg.prop("src",src);
 		$projectName.text( thisName );
 		// $projectTime.text( thisTime );

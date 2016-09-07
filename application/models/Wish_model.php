@@ -35,30 +35,44 @@ class Wish_model extends CI_Model{
         $this->db->where(array('is_deleted'=>0));
         $this->db->limit(0,12);
         $this->db->order_by('wish_id','DESC');
-        $res =  $this->db->get()->result_array();
-        if($res){
-            foreach($res as &$r){
+        $wish =  $this->db->get()->result_array();
+        if($wish){
+            $wish_ids = array_column($wish,'wish_id');
+            $this->db->select('*');
+            $this->db->from('wish_comment');
+            $this->db->where(array('is_deleted'=>0));
+            $this->db->where_in('wish_id',$wish_ids);
+            $this->db->order_by('comment_id','DESC');
+            $comment = $this->db->get()->result_array();
+
+            foreach($wish as &$r){
                 $r['addtime'] = date('d',$r['addtime']).'/'.date('m',$r['addtime']).'/'.date('y',$r['addtime']);
                 if($r['wish_images']){
                     $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['wish_images']);
                     $r['file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
                 }
+                foreach($comment as $c){
+                    if($r['wish_id'] == $c['wish_id']){
+                        $r['comment'][$c['comment_id']] = $c;
+                    }else{
+                        $r['comment'] = array();
+                    }
+                }
                 unset($r);
             }
+
         }
-        return $res;
+        return $wish;
     }
 
     //前台编辑愿望
     public function edit_wish_list_from_front(){
-        $wish_id = $this->input->get('wish_id',true);
+        $wish_id = $this->input->post('edit_wish_id',true);
         if(!$wish_id){
             do_frame('参数错误！');
         }
         $edit_wish_title = $this->input->post('edit_wish_title',true);
-        $edit_wish_title = $edit_wish_title[$wish_id];
         $edit_wish_content = $this->input->post('edit_wish_content',true);
-        $edit_wish_content = $edit_wish_content[$wish_id];
         if(!$edit_wish_title || !$edit_wish_content){
             do_frame('输入不能为空！');
         }
@@ -73,18 +87,21 @@ class Wish_model extends CI_Model{
 
     //前台增加评论
     public function add_wish_comment_from_front(){
-        $wish_id = $this->input->get('wish_id',true);
+        $wish_id = $this->input->post('add_wish_id',true);
         if(!$wish_id){
             do_frame('参数错误！');
         }
         $add_wish_comment = $this->input->post('add_wish_comment',true);
+        if(!$add_wish_comment){
+            do_frame('输入不能为空！');
+        }
         $data = array(
             'question' => $add_wish_comment,
             'wish_id' => $wish_id,
             'user_id' => 1,
             'addtime' => SYSTEM_TIME,
         );
-        $result = $this->db->insert($this->_table,$data);
+        $result = $this->db->insert('wish_comment',$data);
         if ($result) {
             return $this->db->insert_id();
         } else {

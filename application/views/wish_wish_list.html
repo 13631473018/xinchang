@@ -167,7 +167,7 @@
 
 		            <!--评论弹出-->
 		            <div class="price-wrap">
-                        <form action="/wish/add_wish_comment?wish_id=<?php echo $ws['wish_id'];?>" target="_add_wish_comment_<?php echo $ws['wish_id'];?>" method="post">
+                        <form action="/wish/add_wish_comment?wish_id=<?php echo $ws['wish_id'];?>"  method="post">
                             <div class="price-w-t clearfix">
                                 <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="price-w-t-img" />
                                 <div>
@@ -181,31 +181,38 @@
                                     评论<?php echo $ws['wish_id'];?>
                                 </div>
                                 <div class="price-w-b-b">
-                                    <input type="text"  name="add_wish_comment"/>
+                                    <input type="text"  name="add_wish_comment">
+                                    <input type="hidden" name="add_wish_id" value="<?php echo $ws['wish_id'];?>">
                                     <span><input type="submit" value="保存"></span>
-                                    <div class="dialog-wrap">问答</div>
+                                    <div class="dialog-wrap">
+                                        <?php if($ws['comment']): ?>
+                                        <?php foreach($ws['comment'] as $k=>$c): ?>
+                                            <p>评论:<?php echo $c['question'];?></p>
+                                            <p>回复:<?php if($c['answer']){echo $c['answer'];}else{echo '正在回复中...请稍等';} ?></p>
+                                            <br />
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                             <i class="price-wrap-close"></i>
                         </form>
-                        <iframe name="_add_wish_comment_<?php echo $ws['wish_id'];?>" style="display:none;"></iframe>
 		            </div>
 
 		            <!--编辑弹出-->
 		            <div class="editor">
-                        <form action="/wish/edit_wish_list?wish_id=<?php echo $ws['wish_id'];?>" id="_edit_wish_list_<?php echo $ws['wish_id'];?>" method="post">
+                        <form action="/wish/edit_wish_list"  method="post">
                             <div class="eidtor-con clearfix">
                                 <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" width="200" height="205" class="eidtor-con-img fl" />
                                 <div class="eidtor-con-change fl">
-                                    <input name="edit_wish_title[<?php echo $ws['wish_id'];?>]" type="text" placeholder="请输入愿望主题" class="p-name" />
+                                    <input name="edit_wish_title" type="text" placeholder="请输入愿望主题" class="p-name">
                                     <span class="time"><?php echo $ws['addtime'];?></span>
-                                    <textarea name="edit_wish_content[<?php echo $ws['wish_id'];?>]" cols="30" rows="10"><?php echo $ws['content']; ?></textarea>
-                                    <input type="hidden" name="edit_wish_id[<?php echo $ws['wish_id'];?>]" value="<?php echo $ws['wish_id'];?>">
+                                    <textarea name="edit_wish_content" cols="30" rows="10"><?php echo $ws['content']; ?></textarea>
+                                    <input type="hidden" name="edit_wish_id" value="<?php echo $ws['wish_id'];?>">
                                 </div>
                             </div>
                             <i class="price-wrap-close"></i>
-                            <span class="editor-save"><input type="button" value="save<?php echo $ws['wish_id'];?>"></span>
-                            <iframe name="_edit_wish_list_<?php echo $ws['wish_id'];?>" style="display:none;"></iframe>
+                            <span class="editor-save"><input type="submit" value="save<?php echo $ws['wish_id'];?>"></span>
                         </form>
 		            </div>
                 </div>

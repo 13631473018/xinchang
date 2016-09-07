@@ -9,9 +9,12 @@ class Wish extends MY_Controller{
     }
 
     public function wish_list(){
-
         $wish= $this->wish->get_front_wish_list();
-        $this->load->view('wish_wish_list.html',array('wish'=>$wish));
+        $data = array(
+            'wish'=>$wish,
+        );
+        wwww($data);
+        $this->load->view('wish_wish_list.html',$data);
     }
 
     public function add_wish_list(){
@@ -34,9 +37,10 @@ class Wish extends MY_Controller{
         if(IS_POST){
             $res = $this->wish->edit_wish_list_from_front();
             if($res){
-                do_frame('编辑愿望成功！');
+                echo "<script>alert('编辑愿望成功！');</script>";
             }
         }
+        header('Refresh:0;url=/wish/wish_list');
     }
 
     //添加评论
@@ -44,9 +48,10 @@ class Wish extends MY_Controller{
         if(IS_POST){
             $res = $this->wish->add_wish_comment_from_front();
             if($res){
-                do_frame('添加评论成功！');
+                echo "<script>alert('添加评论成功！');</script>";
             }
         }
+        header('Refresh:0;url=/wish/wish_list');
     }
 
 
