@@ -74,12 +74,13 @@ class Wish_model extends CI_Model{
     //前台增加评论
     public function add_wish_comment_from_front(){
         $wish_id = $this->input->get('wish_id',true);
+        wwww($wish_id);
+        die;
         if(!$wish_id){
             do_frame('参数错误！');
         }
         $add_wish_comment = $this->input->post('add_wish_comment',true);
         $add_wish_comment = $add_wish_comment[$wish_id];
-        wwww($add_wish_comment);
     }
 
 

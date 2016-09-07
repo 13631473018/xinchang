@@ -148,7 +148,7 @@
 		                </div>
 		                <div class="price-w-b">
 		                    <div class="price-w-b-t">
-		                        Quotation
+		                        Quotation<?php echo $ws['wish_id'];?>
 		                    </div>
 		                    <div class="price-w-b-b">
 		                        <span>Seller&nbsp;:&nbsp;kagasdfs</span>
@@ -164,9 +164,10 @@
 		                </div>
 		                <i class="consult-wrapw-split-line-close"></i>
 		            </div>
-		             <!--评论弹出-->
+
+		            <!--评论弹出-->
 		            <div class="price-wrap">
-                        <form action="/wish/add_wish_comment?wish_id=<?php echo $ws['wish_id']; ?>" target="_add_wish_comment_" method="post">
+                        <form action="/wish/add_wish_comment?wish_id=<?php echo $ws['wish_id'];?>" target="_add_wish_comment_<?php echo $ws['wish_id'];?>" method="post">
                             <div class="price-w-t clearfix">
                                 <img src="/index/get_image?path=<?php echo $ws['file_path'];?>" alt="" width="200" height="205" class="price-w-t-img" />
                                 <div>
@@ -177,7 +178,7 @@
                             </div>
                             <div class="price-w-b">
                                 <div class="price-w-b-t">
-                                    评论
+                                    评论<?php echo $ws['wish_id'];?>
                                 </div>
                                 <div class="price-w-b-b">
                                     <input type="text"  name="add_wish_comment[<?php echo $ws['wish_id'];?>]"/>
@@ -187,7 +188,7 @@
                             </div>
                             <i class="price-wrap-close"></i>
                         </form>
-                        <iframe name="_add_wish_comment_" style="display:none;"></iframe>
+                        <iframe name="_add_wish_comment_<?php echo $ws['wish_id'];?>" style="display:none;"></iframe>
 		            </div>
 
 		            <!--编辑弹出-->
