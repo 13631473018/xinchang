@@ -44,7 +44,7 @@ class Wish extends MY_Controller{
         if(IS_POST){
             $res = $this->wish->add_wish_comment_from_front();
             if($res){
-                do_frame('编辑愿望成功！');
+                do_frame('添加评论成功！');
             }
         }
     }
