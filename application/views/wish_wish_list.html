@@ -185,7 +185,7 @@
                                     <input type="hidden" name="add_wish_id" value="<?php echo $ws['wish_id'];?>">
                                     <span><input type="submit" value="保存"></span>
                                     <div class="dialog-wrap">
-                                        <?php if($ws['comment']): ?>
+                                        <?php if(isset($ws['comment'])): ?>
                                         <?php foreach($ws['comment'] as $k=>$c): ?>
                                             <p>评论:<?php echo $c['question'];?></p>
                                             <p>回复:<?php if($c['answer']){echo $c['answer'];}else{echo '正在回复中...请稍等';} ?></p>

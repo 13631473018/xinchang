@@ -110,5 +110,10 @@ class Admin extends MY_Controller {
         header('Location: /admin/quotation_list');
     }
 
+
+    //愿望列表
+    public function wish_list(){
+
+    }
 }
 

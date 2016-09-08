@@ -52,7 +52,6 @@ function wwww($val){
     fclose($fp);
 }
 
-
 /**
  * 时区设置
  */

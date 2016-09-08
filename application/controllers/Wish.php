@@ -13,7 +13,6 @@ class Wish extends MY_Controller{
         $data = array(
             'wish'=>$wish,
         );
-        wwww($data);
         $this->load->view('wish_wish_list.html',$data);
     }
 
