@@ -113,7 +113,23 @@ class Admin extends MY_Controller {
 
     //愿望列表
     public function wish_list(){
-
+        $this->load->model('wish_model','wish');
+        $this->load->model('upload_file_model','upload_file');
+        $wish = $this->wish->get_wish_list_from_backend();
+        $this->load->view('admin_wish_list.html',array('wish'=>$wish));
     }
+
+    //愿望评论列表
+    public function wish_comment_list(){
+        $wish_id = $this->input->get('wish_id',true);
+        if(!$wish_id){
+            echo "<script>alert('参数错误！');</script>";
+            header('Location: /admin/wish_list');
+        }
+        $this->load->model('wish_model','wish');
+        $comment = $this->wish->get_comment_list_from_backend($wish_id);
+        $this->load->view('admin_wish_comment_list.html',array('comment'=>$comment));
+    }
+
 }
 

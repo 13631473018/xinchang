@@ -33,7 +33,7 @@ class Wish_model extends CI_Model{
         $this->db->select('*');
         $this->db->from($this->_table);
         $this->db->where(array('is_deleted'=>0));
-        $this->db->limit(0,12);
+        $this->db->limit(12,0);
         $this->db->order_by('wish_id','DESC');
         $wish =  $this->db->get()->result_array();
         if($wish){
@@ -107,6 +107,49 @@ class Wish_model extends CI_Model{
         } else {
             return false;
         }
+    }
+
+    //后台愿望列表
+    public function get_wish_list_from_backend(){
+        $this->db->select('*');
+        $this->db->from($this->_table);
+        $this->db->where(array('is_deleted'=>0));
+        $this->db->limit(12,0);
+        $this->db->order_by('wish_id','DESC');
+        $wish =  $this->db->get()->result_array();
+        if($wish){
+            foreach($wish as &$w){
+                if($w['wish_images']){
+                    $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($w['wish_images']);
+                    $w['file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+                    $w['addtime'] = $w['addtime'] ? date('Y-m-d',$w['addtime']) : '';
+                }
+                unset($w);
+            }
+        }
+        return $wish;
+    }
+
+    //后台愿望评论列表
+    public function get_comment_list_from_backend($wish_id){
+        if(!$wish_id){
+            echo "<script>alert('参数错误！');</script>";
+            header('Location: /admin/wish_list');
+        }
+        $this->db->select('*');
+        $this->db->from('wish_comment');
+        $this->db->where(array('is_deleted'=>0));
+        $this->db->where(array('wish_id'=>$wish_id));
+        $this->db->limit(12,0);
+        $this->db->order_by('comment_id','DESC');
+        $comment =  $this->db->get()->result_array();
+        if($comment){
+            foreach($comment as &$c){
+                $c['addtime'] = $c['addtime'] ? date('Y-m-d',$c['addtime']) : '';
+            }
+            unset($c);
+        }
+        return $comment;
     }
 
 

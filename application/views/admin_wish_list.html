@@ -22,6 +22,34 @@
         .login-p-submit{margin:0 0 30px 0;}
         .login-p-submit .form-submit{border:1px solid #ccc;padding:3px 20px;margin:0 0 0 290px; cursor:pointer;}
         .login-p-submit .form-submit:hover{background:#666;color:#fff;}
+        .list-wrap{
+            width:1100px;
+            margin:0 auto;
+        }
+        .list-wrap ul{
+            overflow: hidden;
+            *zoom:1;
+            text-align: center;
+            min-width: 1100px;
+            margin:0 auto;
+        }
+        .list-wrap ul li{
+            float: left;
+            width:155px;
+            min-height: 31px;
+            border:1px solid #cad9ea;
+            margin:0 auto;
+            line-height: 31px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        .list-wrap .list-title{
+            font-weight: bold;
+        }
+        .list-wrap ul li.on{
+            width:70px;
+        }
     </style>
 
     <script type="text/javascript">
@@ -61,7 +89,7 @@
 <body style="zoom: 1;">
 <div class="top-height">
     <div class="index-top"><h3 style="font-size:18px;">装修报价系统管理中心</h3>
-        <p style="width:30%;float:right;line-height:30px;text-align:right;padding-right:20px;">欢迎您 quabuy<a style="margin:0 0 0 20px;" href="http://qn.quabuy.com/price/admin.php/home/login/logout">退出</a></p>
+        <p style="width:30%;float:right;line-height:30px;text-align:right;padding-right:20px;">欢迎您 quabuy<a style="margin:0 0 0 20px;" href="">退出</a></p>
         <div style="clear:both;"></div>
     </div>
 
@@ -91,42 +119,38 @@
     <div class="default-state"><span class="state-text"><span class="state-pic">＞</span>报价列表</span></div>
     <!---内容start--->
     <div class="area-center center">
-
-        <!----table  begin--->
-
-        <table width="92%" class="table" style=" ">
-            <tbody>
-                <tr>
-                    <th>报价ID</th>
-                    <th>标题</th>
-                    <th>内容</th>
-                    <th>图片</th>
-                    <th>价格</th>
-                    <th>时间</th>
-                    <th>操作</th>
-                </tr>
-
-                <!----报价列表 ---->
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <input type="text" name="price" value="" placeholder="请输入价格" size="7">
-                    </td>
-                    <td></td>
-                    <td>
-                        <img src="/images/admin/icon_trash.gif" title="删除">
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <!----table end---->
     </div>
     <!---内容end--->
 
+</div>
+
+<div class="list-wrap">
+
+    <ul class="list-title">
+        <li class="on">愿望ID</li>
+        <li>愿望标题</li>
+        <li>愿望内容</li>
+        <li>愿望图片</li>
+        <li>时间</li>
+        <li>操作</li>
+    </ul>
+
+    <!----报价列表 ---->
+    <?php if($wish): ?>
+    <?php foreach($wish as $item): ?>
+    <ul>
+        <li class="on"><?php echo $item['wish_id'];?></li>
+        <li><?php echo $item['title'];?></li>
+        <li title="<?php echo $item['content'];?>"><?php echo $item['content'];?></li>
+        <li><img src="/index/get_image?path=<?php echo $item['file_path'];?>"></li>
+        <li><?php echo $item['addtime'];?></li>
+        <li>
+            <a href="/admin/wish_comment_list?wish_id=<?php echo $item['wish_id'];?>"><img src="/images/admin/icon_edit.gif" title="评论列表"></a>
+            <a class="a-dele" style="margin:0 0 0 10px;" onclick="return dele('报价ID:<?php echo $item['wish_id'];?>');" href="/admin/wish_list_del?wish_id=<?php echo $item['wish_id'];?>"><img src="/images/admin/icon_trash.gif" title="删除"></a>
+        </li>
+    </ul>
+    <?php endforeach; ?>
+    <?php endif; ?>
 
 </div>
 <div class="none-height" style="height: 1px;"></div>
@@ -137,3 +161,7 @@
 <div style="clear:both;"></div>
 
 </body></html>
+
+<script type="text/javascript">
+
+</script>
