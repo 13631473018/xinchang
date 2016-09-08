@@ -25,20 +25,22 @@
             width:1100px;
             margin:0 auto;
         }
-        .list-wrap ul{
-            overflow: hidden;
+        .list-wrap>ul{
+            -overflow: hidden;
             *zoom:1;
             text-align: center;
             min-width: 1100px;
             margin:0 auto;
         }
-        .list-wrap ul li{
+        .list-wrap>ul>li{
             float: left;
             width:155px;
             min-height: 31px;
             border:1px solid #cad9ea;
             margin:0 auto;
             line-height: 31px;
+        }
+        .list-wrap>ul>li.active{
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
@@ -46,8 +48,35 @@
         .list-wrap .list-title{
             font-weight: bold;
         }
-        .list-wrap ul li.on{
+        .list-wrap>ul>li.on{
             width:70px;
+        }
+        .sub-list-wrap{
+             position: absolute;
+            left:0;
+            top: 0;
+            z-index: 10;
+            background: #fff;
+            display: none;
+        }
+       /* .sub-list{
+            position: absolute;
+            left:0;
+            top: 0;
+            z-index: 10;
+            background: #fff;
+            display: none;
+        }*/
+        .sub-list li{
+            width:155px;
+            min-height: 31px;
+            border:1px solid #cad9ea;
+            line-height: 31px;
+            text-align: center;
+            position: relative;
+        }
+        .list-wrap>ul>li:hover .sub-list-wrap{
+            display: block;
         }
     </style>
 
@@ -142,13 +171,19 @@
         <ul>
             <li class="on"><?php echo $item['quotation_id']; ?></li>
             <li><?php echo $item['enquiry_title']; ?></li>
-            <li title="<?php echo $item['enquiry_content'];?>"><?php echo $item['enquiry_content'];?></li>
-            <li>
+            <li title="<?php echo $item['enquiry_content'];?>" class="active"><?php echo $item['enquiry_content'];?></li>
+            <li style="position: relative;">
                 <?php if($item['enquiry_attach']): ?>
                     <a href="/index/get_file?path=<?php echo $item['enquiry_file_path'];?>&origin_name=<?php echo $item['enquiry_origin_name'];?>"><?php echo $item['enquiry_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
+               <div class="sub-list-wrap">
+                    <ul class="sub-list">
+                        <li>test1</li>
+                        <li>test2</li>
+                    </ul>
+               </div>
             </li>
             <li>
                 <?php if($item['reply_attach']): ?>
