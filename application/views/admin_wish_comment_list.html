@@ -140,10 +140,10 @@
         <li class="on"><?php echo $item['comment_id'];?></li>
         <li><?php echo $item['question'];?></li>
         <li>
-            <form action="/admin/do_upgrade_wish_commnet_answer" method="post">
-                <textarea name="answer" cols="30" rows="10"><?php echo $item['answer'];?></textarea>
+            <form action="/admin/do_upgrade_wish_commnet_answer" method="post" style="position:relative;">
+                <textarea name="answer" cols="30" rows="10" style="width: 155px;height: 25px;"><?php echo $item['answer'];?></textarea>
                 <input type="hidden" name="comment_id" value="<?php echo $item['comment_id'];?>">
-                <input type="submit" value="回复">
+                <input type="submit" value="回复" style="position: absolute; bottom:0;right:0;">
             </form>
         </li>
         <li><?php echo $item['addtime'];?></li>
