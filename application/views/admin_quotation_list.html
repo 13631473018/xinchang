@@ -24,7 +24,7 @@
     <!----报价列表 ---->
     <?php if($list): ?>
     <?php foreach($list as $item): ?>
-        <ul>
+        <ul class="quotation-list-wrap">
             <li class="on"><?php echo $item['quotation_id']; ?></li>
             <li><?php echo $item['enquiry_title']; ?></li>
             <li title="<?php echo $item['enquiry_content'];?>" class="active"><?php echo $item['enquiry_content'];?></li>

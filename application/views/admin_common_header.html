@@ -26,14 +26,13 @@
             width:1100px;
             margin:0 auto;
         }
-        .list-wrap ul{
-            overflow: hidden;
+        .list-wrap>ul{
             *zoom:1;
             text-align: center;
             min-width: 1100px;
             margin:0 auto;
         }
-        .list-wrap ul li{
+        .list-wrap>ul>li{
             float: left;
             width:155px;
             min-height: 31px;
@@ -47,8 +46,14 @@
         .list-wrap .list-title{
             font-weight: bold;
         }
-        .list-wrap ul li.on{
+        .list-wrap>ul>li.on{
             width:70px;
+        }
+        .sub-list-wrap{
+            display: none;
+        }
+        .quotation-list-wrap>li:hover .sub-list-wrap{
+            display: block;
         }
     </style>
 

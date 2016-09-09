@@ -25,7 +25,7 @@
         <li class="on"><?php echo $item['wish_id'];?></li>
         <li><?php echo $item['title'];?></li>
         <li title="<?php echo $item['content'];?>"><?php echo $item['content'];?></li>
-        <li><img src="/index/get_image?path=<?php echo $item['file_path'];?>"></li>
+        <li><img src="/index/get_image?path=<?php echo $item['file_path'];?>" width="155" height="31"></li>
         <li><?php echo $item['addtime'];?></li>
         <li>
             <a href="/admin/wish_comment_list?wish_id=<?php echo $item['wish_id'];?>"><img src="/images/admin/icon_edit.gif" title="评论列表"></a>
