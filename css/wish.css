@@ -39,6 +39,9 @@ body{
 	color: #fff;
 	border:none;
 }
+.wrap .nav .nav-list li:hover .nav-list-sub{
+	display: block;
+}
 .wrap .nav-list-sub{
 	position:absolute;
 	z-index: 10;
