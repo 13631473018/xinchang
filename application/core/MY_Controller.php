@@ -20,3 +20,19 @@ class MY_Controller extends CI_Controller {
 
 
 }
+
+class MY_FrontEndController extends MY_Controller {
+
+}
+
+class MY_BackEndController extends MY_Controller {
+
+    public function __construct(){
+        parent::__construct();
+        $this->addHeader();
+    }
+
+    public function addHeader(){
+        $this->load->view('admin_common_header.html');
+    }
+}

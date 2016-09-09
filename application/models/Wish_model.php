@@ -152,5 +152,49 @@ class Wish_model extends CI_Model{
         return $comment;
     }
 
+    //更新愿望评论回复
+    public function do_upgrade_wish_comment_answer(){
+        $comment_id = $this->input->post('comment_id',true);
+        if(!$comment_id){
+            echo "<script>alert('参数错误！');</script>";
+            header('Location: /admin/wish_list');
+        }
+        $answer = $this->input->post('answer',true);
+        if(!$answer){
+            echo "<script>alert('输入不能为空!');</script>";
+            header('Location: /admin/wish_list');
+        }
+        $data = array(
+            'answer' => $answer,
+            'is_answer' => 1,
+        );
+        $this->db->where(array('comment_id'=>$comment_id));
+        $res = $this->db->update('wish_comment',$data);
+        return $res;
+
+    }
+
+    //愿望清单删除
+    public function wish_list_del_from_backend(){
+        $wish_id = $this->input->get('wish_id',true);
+        $data = array(
+            'is_deleted' => 1,
+        );
+        $this->db->where(array('wish_id'=>$wish_id));
+        $res = $this->db->update($this->_table,$data);
+        return $res;
+    }
+
+    //后台删除愿望评论
+    public function wish_commnet_del_from_backend(){
+        $comment_id = $this->input->get('comment_id',true);
+        $data = array(
+            'is_deleted' => 1,
+        );
+        $this->db->where(array('comment_id'=>$comment_id));
+        $res = $this->db->update('wish_comment',$data);
+        return $res;
+    }
+
 
 }

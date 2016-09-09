@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends MY_Controller {
+class Admin extends MY_BackEndController {
 
     protected $_user_name,$_password = null;
 
@@ -11,6 +11,9 @@ class Admin extends MY_Controller {
             header("Location: /Admin_Login/login");
         }
         $this->load->model('public_model', 'p');
+        $this->load->model('wish_model','wish');
+        $this->load->model('upload_file_model','upload_file');
+        $this->load->model('quotation_model','quotation');
     }
 
     public function index(){
@@ -128,7 +131,59 @@ class Admin extends MY_Controller {
         }
         $this->load->model('wish_model','wish');
         $comment = $this->wish->get_comment_list_from_backend($wish_id);
-        $this->load->view('admin_wish_comment_list.html',array('comment'=>$comment));
+        //$this->load->view('admin_common_header.html');
+        $this->load->view('admin_wish_comment_list.html',array('comment'=>$comment,'wish_id'=>$wish_id));
+    }
+
+    //更新愿望评论回复
+    public function do_upgrade_wish_commnet_answer(){
+        if(IS_POST){
+            $res = $this->wish->do_upgrade_wish_comment_answer();
+            $wish_id = $this->input->post('wish_id',true);
+            if($res){
+                echo "<script>alert('愿望评论回复成功！');</script>";
+                header('Location: /admin/wish_comment_list?wish_id='.$wish_id);
+            }
+        }
+
+    }
+
+    //愿望清单删除
+    public function wish_list_del(){
+        $wish_id = $this->input->get('wish_id',true);
+        if(!$wish_id){
+            echo "<script>alert('参数错误！');</script>";
+            header('Location: /admin/wish_list');
+        }
+        $res = $this->wish->wish_list_del_from_backend();
+        if($res){
+            echo "<script>alert('愿望清单删除成功！');</script>";
+            header('Location: /admin/wish_list');
+        }
+    }
+
+
+    //愿望评论删除
+    public function wish_comment_del(){
+        $comment_id = $this->input->get('comment_id',true);
+        $wish_id = $this->input->get('wish_id',true);
+        if(!$comment_id || !$wish_id){
+            echo "<script>alert('参数错误！');</script>";
+            header('Location: /admin/wish_comment_list?wish_id='.$wish_id);
+        }
+        $this->load->model('wish_model','wish');
+        $res = $this->wish->wish_commnet_del_from_backend();
+        if($res){
+            echo "<script>alert('愿望评论删除成功！');</script>";
+            header('Location: /admin/wish_comment_list?wish_id='.$wish_id);
+        }
+    }
+
+    //登出
+    public function logout(){
+        $_SESSION = array();
+        session_destroy();
+        $this->index();
     }
 
 }
