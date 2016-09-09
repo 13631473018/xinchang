@@ -34,9 +34,13 @@ class Admin extends MY_BackEndController {
             }
             $r['addtime'] = intval($r['addtime']) ? date('Y-m-d',$r['addtime']) : '-';
             if($r['enquiry_attach']){
-                $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['enquiry_attach']);
-                $r['enquiry_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
-                $r['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+                $r['enquiry_attach_files'] = array();
+                $enquiry_attach_ids = explode(',',$r['enquiry_attach']);
+                foreach($enquiry_attach_ids as $key => $enquiry_id){
+                    $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($enquiry_id);
+                    $r['enquiry_attach_files'][$key]['enquiry_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+                    $r['enquiry_attach_files'][$key]['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+                }
             }
             if($r['reply_attach']){
                 $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['reply_attach']);
@@ -45,6 +49,7 @@ class Admin extends MY_BackEndController {
             }
             unset($r);
         }
+
         $this->load->view('admin_quotation_list.html',array('list'=>$res));
     }
 

@@ -30,17 +30,14 @@
             <li title="<?php echo $item['enquiry_content'];?>" class="active"><?php echo $item['enquiry_content'];?></li>
             <li style="position: relative;">
                 <?php if($item['enquiry_attach']): ?>
+                    <?php echo $item['enquiry_attach_files'][0]['enquiry_origin_name'];?>
                     <div class="sub-list-wrap">
                         <ul class="sub-list">
+                        <?php foreach($item['enquiry_attach_files'] as $af) :?>
                             <li>
-                                <a href="/index/get_file?path=<?php echo $item['enquiry_file_path'];?>&origin_name=<?php echo $item['enquiry_origin_name'];?>"><?php echo $item['enquiry_origin_name'];?></a>
+                                <a href="/index/get_file?path=<?php echo $af['enquiry_file_path'];?>&origin_name=<?php echo $af['enquiry_origin_name'];?>"><?php echo $af['enquiry_origin_name'];?></a>
                             </li>
-                            <li>
-                                <a href="/index/get_file?path=<?php echo $item['enquiry_file_path'];?>&origin_name=<?php echo $item['enquiry_origin_name'];?>"><?php echo $item['enquiry_origin_name'];?></a>
-                            </li>
-                            <li>
-                                <a href="/index/get_file?path=<?php echo $item['enquiry_file_path'];?>&origin_name=<?php echo $item['enquiry_origin_name'];?>"><?php echo $item['enquiry_origin_name'];?></a>
-                            </li>
+                        <?php endforeach;?>
                         </ul>
                     </div>
                 <?php else: ?>

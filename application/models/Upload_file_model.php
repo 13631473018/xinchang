@@ -33,5 +33,35 @@ class Upload_file_model extends CI_Model{
         return $res;
     }
 
+    //插入多个文件记录
+    public function insert_upload_file_record_multiple($file_multiple){
+        if(!$file_multiple){
+            return false;
+        }
+        $data = array();
+        $ids = array();
+        $this->db->trans_start();
+        foreach($file_multiple as $key=>$file){
+            $data = array(
+                'origin_name'=>$file['originName'],
+                'new_name'=>$file['newName'],
+                'file_ext'=>$file['fileExt'],
+                'file_size'=>$file['fileSize'],
+                'file_path'=>$file['filePath'],
+                'addtime'=>SYSTEM_TIME,
+            );
+            $res = $this->db->insert($this->_table,$data);
+            if($res){
+                $ids[] = $this->db->insert_id();
+            }
+        }
+        $this->db->trans_complete();
+        if ($ids) {
+            return $ids;
+        } else {
+            return false;
+        }
+    }
+
 
 }

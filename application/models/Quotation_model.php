@@ -22,9 +22,9 @@ class Quotation_model extends CI_Model{
         );
         if(isset($_FILES['enquiry_attach'])){
             $enquiry_attach = $_FILES['enquiry_attach'];
-            $upload_ojb = $this->file->upload_file($enquiry_attach);
-            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
-            $data['enquiry_attach'] = $upload_file_id;
+            $file_multiple = $this->file->upload_file_multiple($enquiry_attach);
+            $upload_file_ids = $this->upload_file->insert_upload_file_record_multiple($file_multiple);
+            $data['enquiry_attach'] = $upload_file_ids ? implode(',',$upload_file_ids) : '';
         }
 
         $result = $this->db->insert($this->_table,$data);
