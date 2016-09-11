@@ -133,7 +133,7 @@
             <?php if($quo['reply_attach']): ?>
                 <div>
                     <i class="file-icon"></i>
-                    <!--<a href="/index/get_file?path=<?php echo $quo['file_path'];?>&origin_name=<?php echo $quo['origin_name'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>-->
+                    <a href="/index/get_file?path=<?php echo $quo['reply_file_path'];?>&origin_name=<?php echo $quo['reply_origin_name'];?>" target="_blank"><?php echo $quo['reply_origin_name'];?></a>
                 </div>
             <?php endif; ?>
         </div>
@@ -192,8 +192,6 @@
             var qid = _this.data('qid');
             var fid = _this.data('fid');
             var enquiry_attach_file = $('#enquiry_attach_fid_'+fid);
-            alert(enquiry_attach_file);
-            return;
             var is_dele = dele(_this.data('attach_name'));
             if(is_dele){
                 $.ajax({
@@ -208,6 +206,7 @@
                         if (data.code == 1) {
                             alert(data.msg);
                             _this.parent().remove();
+                            enquiry_attach_file.remove();
                         }
                     }
                 });
