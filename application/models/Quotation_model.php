@@ -51,6 +51,12 @@ class Quotation_model extends CI_Model{
                     $r['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
                     $r['enquiry_fid'] = $upload_file_info['file_id'];
                 }
+                if($r['reply_attach']){
+                    $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($r['reply_attach']);
+                    $r['reply_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
+                    $r['reply_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+                    $r['reply_fid'] = $upload_file_info['file_id'];
+                }
                 unset($r);
             }
         }
