@@ -107,3 +107,12 @@ if(!function_exists('do_frame')){
         exit();
     }
 }
+
+//是否图片或pdf
+if(!function_exists('is_image_pdf')){
+    function is_image_pdf($type){
+        $img_pos = strpos($type,'image');
+        $pdf_pos = strpos($type,'pdf');
+        return ($img_pos !== false) || ($pdf_pos !== false);
+    }
+}

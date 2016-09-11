@@ -20,16 +20,30 @@ class Index extends MY_Controller {
         }
         $absolute_path =  substr(ROOT_PATH,0,-1) . $path;
         if(is_file($absolute_path)){
-            $file = fopen($absolute_path, 'rb');
-            header('Content-Type: application/octet-stream');
-            header('Accept-Ranges: bytes');
-            header('Accept-Length: '.filesize($absolute_path));
-            header('Content-Disposition: attachment; filename='.$origin_name);
-            while(!feof($file) && ($bin = fread($file,1024)) !== false ){
-                echo $bin;
+            $mimetype = mime_content_type($absolute_path);
+            $is_image_pdf = is_image_pdf($mimetype);
+            wwww($mimetype);
+            if($is_image_pdf){
+                header('Content-type:'.$mimetype);
+                $file = fopen($absolute_path, "rb");
+                while(!feof($file) && ($bin = fread($file,1024)) !== false ){
+                    echo $bin;
+                }
+                fclose($file);
+                exit;
+            }else{
+                $file = fopen($absolute_path, 'rb');
+                header('Content-Type: application/octet-stream');
+                header('Accept-Ranges: bytes');
+                header('Accept-Length: '.filesize($absolute_path));
+                header('Content-Disposition: attachment; filename='.$origin_name);
+                while(!feof($file) && ($bin = fread($file,1024)) !== false ){
+                    echo $bin;
+                }
+                fclose($file);
+                exit;
             }
-            fclose($file);
-            exit;
+
         }else{
             die('参数错误！');
         }
