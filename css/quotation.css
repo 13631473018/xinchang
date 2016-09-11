@@ -175,7 +175,7 @@ html,body,.edi-fullScreen{
 }
 .con-edi-hide{
 	width:600px;
-	height:266px;
+	height:auto;
 	background:#b3b3b3;
 	position: fixed;
 	top:50%;
