@@ -20,11 +20,13 @@ class Index extends MY_Controller {
         }
         $absolute_path =  substr(ROOT_PATH,0,-1) . $path;
         if(is_file($absolute_path)){
-            $mimetype = mime_content_type($absolute_path);
-            $is_image_pdf = is_image_pdf($mimetype);
-            wwww($mimetype);
+            //$fi = new finfo(FILEINFO_MIME_TYPE);
+            //$mime_type = $fi->file($absolute_path);
+            $info = getimagesize($absolute_path);
+            $mime_type = $info['mime'];
+            $is_image_pdf = is_image_pdf($mime_type);
             if($is_image_pdf){
-                header('Content-type:'.$mimetype);
+                header('Content-type:'.$mime_type);
                 $file = fopen($absolute_path, "rb");
                 while(!feof($file) && ($bin = fread($file,1024)) !== false ){
                     echo $bin;

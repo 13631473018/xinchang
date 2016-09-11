@@ -35,7 +35,7 @@
                         <ul class="sub-list">
                         <?php foreach($item['enquiry_attach_files'] as $af) :?>
                             <li>
-                                <a href="/index/get_file?path=<?php echo $af['enquiry_file_path'];?>&origin_name=<?php echo $af['enquiry_origin_name'];?>"><?php echo $af['enquiry_origin_name'];?></a>
+                                <a href="/index/get_file?path=<?php echo $af['enquiry_file_path'];?>&origin_name=<?php echo $af['enquiry_origin_name'];?>" target="_blank"><?php echo $af['enquiry_origin_name'];?></a>
                             </li>
                         <?php endforeach;?>
                         </ul>
@@ -47,7 +47,7 @@
             </li>
             <li>
                 <?php if($item['reply_attach']): ?>
-                    <a href="/index/get_file?path=<?php echo $item['reply_file_path'];?>&origin_name=<?php echo $item['reply_origin_name'];?>"><?php echo $item['reply_origin_name'];?></a>
+                    <a href="/index/get_file?path=<?php echo $item['reply_file_path'];?>&origin_name=<?php echo $item['reply_origin_name'];?>" target="_blank"><?php echo $item['reply_origin_name'];?></a>
                 <?php else: ?>
                     没有上传
                 <?php endif; ?>
