@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/quotation.css" type="text/css">
     <link rel="stylesheet" href="/css/reset.css">
     <script src="/js/jquery-1.12.1.min.js"></script>
+    <script src="/js/common.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -107,9 +108,9 @@
             <p class="con-title"><?php echo $quo['enquiry_title'];?></p>
             <p><?php echo $quo['enquiry_content'];?></p>
             <?php if($quo['enquiry_attach']) :?>
-            <div>
+            <div id="enquiry_attach_fid_<?php echo $quo['enquiry_fid'];?>">
                 <i class="file-icon"></i>
-                <a href="/index/get_file?path=<?php echo $quo['file_path'];?>&origin_name=<?php echo $quo['origin_name'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>
+                <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
             </div>
             <?php endif;?>
 
@@ -125,9 +126,15 @@
                 <span><a href="/quotation/del?qid=<?php echo $quo['quotation_id'];?>" onclick="return dele('<?php echo $quo['enquiry_title'];?>');">删除</a></span>
             </div>
             <?php if($quo['reply_content']): ?>
-            <p>回复&nbsp;:&nbsp;<?php echo $quo['reply_content'];?></p>
+                <div class="reply_content">回复:<?php echo $quo['reply_content'];?></div>
             <?php else: ?>
-            <p>&nbsp;</p>
+                <p>&nbsp;</p>
+            <?php endif; ?>
+            <?php if($quo['reply_attach']): ?>
+                <div>
+                    <i class="file-icon"></i>
+                    <!--<a href="/index/get_file?path=<?php echo $quo['file_path'];?>&origin_name=<?php echo $quo['origin_name'];?>" target="_blank"><?php echo $quo['origin_name'];?></a>-->
+                </div>
             <?php endif; ?>
         </div>
         <?php endforeach; ?>
@@ -142,6 +149,15 @@
             <br/>
             <span style="position: absolute;">项目描述：</span>
             <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
+            <?php if($quo['enquiry_attach']) :?>
+            <div>
+                附件:
+                    <div>
+                        <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
+                        <span data-qid="<?php echo $quo['quotation_id'];?>" data-fid="<?php echo $quo['enquiry_attach'];?>" data-attach_name="<?php echo $quo['enquiry_origin_name'];?>" style="cursor:pointer;color: red;" class="quotation_attach_del">删除<?php echo $quo['enquiry_origin_name'];?></span>
+                    </div>
+            </div>
+            <?php endif; ?>
             <div class="add-submit"><input type="submit" value="save"></div><br/>
             <i class="close"></i>
             <i class="file-icon"></i>
@@ -170,7 +186,33 @@
 </html>
 
 <script type="text/javascript">
-    function dele(t){
-        return confirm("您真的要删除"+t+"吗？");
-    }
+    $(function () {
+        $('.quotation_attach_del').click(function(){
+            var _this = $(this);
+            var qid = _this.data('qid');
+            var fid = _this.data('fid');
+            var enquiry_attach_file = $('#enquiry_attach_fid_'+fid);
+            alert(enquiry_attach_file);
+            return;
+            var is_dele = dele(_this.data('attach_name'));
+            if(is_dele){
+                $.ajax({
+                    url: '/quotation/quotation_attach_del/',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        'qid':qid,
+                        'fid':fid
+                    },
+                    success: function(data) {
+                        if (data.code == 1) {
+                            alert(data.msg);
+                            _this.parent().remove();
+                        }
+                    }
+                });
+            }
+
+        });
+    });
 </script>

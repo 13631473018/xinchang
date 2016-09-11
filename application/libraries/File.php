@@ -25,6 +25,7 @@ class file
         $this->path = ROOT_PATH . $relate_save_path ;
         if (!is_dir($this->path)) {
             @mkdir($this->path, 0777, true);
+            @chmod($this->path, 0777);
         }
         if( $this->f['size'] >$max_size){
             $this->err = array('err' => '文件不能大于5M');
@@ -36,6 +37,7 @@ class file
             $ext = $file_info['extension'];
             $fileName .= '.' . $ext;
             $save_absolute = $this->path . $fileName;
+            @chmod($save_absolute, 0777);
             if(move_uploaded_file($this->f['tmp_name'],$save_absolute)){
                 $this->newName = $fileName;
                 $this->originName = $this->f['name'];
@@ -57,6 +59,7 @@ class file
         $this->path = ROOT_PATH . $relate_save_path ;
         if (!is_dir($this->path)) {
             @mkdir($this->path, 0777, true);
+            @chmod($this->path, 0777);
         }
 
         for($file_index;$file_index<$array_size;$file_index++){
@@ -73,6 +76,7 @@ class file
                 $ext = $file_info['extension'];
                 $fileName .= '.' . $ext;
                 $save_absolute = $this->path . $fileName;
+                @chmod($save_absolute, 0777);
                 if(move_uploaded_file($f_tmp_name,$save_absolute)){
                     $file_multiple[$file_index]['newName'] =  $fileName;
                     $file_multiple[$file_index]['originName'] =  $f_name;

@@ -1,4 +1,12 @@
 
+    <!--编辑器插件-->
+    <script>
+        window.UEDITOR_HOME_URL = "/public/ueditor/"
+    </script>
+
+    <script type="text/javascript" src="/public/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/public/ueditor/ueditor.all.js"></script>
+
     <!---导航end--->
     <div class="default-state">
         <span class="state-text"><span class="state-pic">＞</span>编辑报价</span>
@@ -22,7 +30,7 @@
                         </tr>
                         <tr>
                             <td>报价附件:
-                                <?php if($quo['reply_attach']): ?>
+                                <?php if($quo['enquiry_attach']): ?>
                                     <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
                                 <?php else: ?>
                                     没有上传
@@ -34,16 +42,15 @@
                         </tr>
                         <tr>
                             <td>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td>回复内容:</td>
-                                            <td>
-                                                <textarea name="reply_content" cols="160" rows="20"><?php echo $quo['reply_content']; ?></textarea>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                               回复内容:
+                                <script id="reply_content" name="reply_content" type="text/plain"><?php echo htmlspecialchars_decode($quo['reply_content']);?></script>
+                                <script type="text/javascript">
+                                    var ue = UE.getEditor('reply_content',{
+                                        initialFrameWidth:1240,//初始化宽度
+                                        initialFrameHeight:480,//初始化高度
+                                        toolbars:[["source","|","undo","redo","|","removeformat","bold","italic","underline","paragraph","fontfamily","fontsize","|","fullscreen"]]
+                                    });
+                                </script>
                             </td>
                         </tr>
                         <tr>
@@ -65,11 +72,6 @@
             </div>
             <p class="arear-add-sheng-edit-p"><input type="submit" name="secondarea_name_submit" class="firstarea_name_submit room_scheme_submit" value="保存"></p>
         </form>
-
-
-
-
-
 
     </div>
     <!---内容end--->

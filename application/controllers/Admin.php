@@ -98,6 +98,8 @@ class Admin extends MY_BackEndController {
             $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($res['enquiry_attach']);
             $res['enquiry_origin_name'] = $upload_file_info['origin_name'] ? $upload_file_info['origin_name'] : '';
             $res['enquiry_file_path'] = $upload_file_info['file_path'] ? $upload_file_info['file_path'] : '';
+            wwww($res);
+
         }
         if($res['reply_attach']){
             $upload_file_info = $this->upload_file->get_upload_file_info_by_fid($res['reply_attach']);

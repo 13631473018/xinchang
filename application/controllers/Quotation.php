@@ -5,6 +5,7 @@ class Quotation extends MY_Controller {
 
     public function __construct(){
         parent::__construct();
+        $this->load->model('quotation_model','quotation');
     }
 
     public function quotation(){
@@ -47,6 +48,15 @@ class Quotation extends MY_Controller {
         $this->load->model('quotation_model','quotation');
         $quotation = $this->quotation->get_front_quotation_list();
         $this->load->view('quotation_quotation_test.html',array('quotation'=>$quotation));
+    }
+
+    public function quotation_attach_del(){
+        if(is_ajax()){
+            $res = $this->quotation->do_quotation_enquiry_attach_del();
+            if($res){
+                die(json_encode(array('code'=>1,'msg'=>'删除附件成功！')));
+            }
+        }
     }
 
 
