@@ -471,8 +471,3 @@ function getwebpath() {
             return (localhostPaht + projectName);
 }
 
-function dele(t){
-
-	return confirm("您真的要删除"+t+"吗？");
-
-}

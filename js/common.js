@@ -7,3 +7,7 @@ function iResultAlter (msg,url) {
     window.location.reload();
     return false;
 }
+
+function dele(t){
+    return confirm("您真的要删除"+t+"吗？");
+}
