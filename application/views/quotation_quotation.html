@@ -125,8 +125,48 @@
                 <i></i>
                 <span><a href="/quotation/del?qid=<?php echo $quo['quotation_id'];?>" onclick="return dele('<?php echo $quo['enquiry_title'];?>');">删除</a></span>
             </div>
+			<!-- 编辑按钮弹窗 -->
+		    <div class="con-edi-hide">
+		        <i class="con-need-add-close"></i>
+		        <form action="/quotation/edit" method="post" enctype="multipart/form-data">
+		            项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
+		            咨询日期：<span><?php echo $quo['addtime']; ?></span><br/>
+		            <br/>
+		            <span style="position: absolute;">项目描述：</span>
+		            <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
+		            <?php if($quo['enquiry_attach']) :?>
+		            <div>
+		                附件:
+		                    <div>
+		                        <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
+		                        <span data-qid="<?php echo $quo['quotation_id'];?>" data-fid="<?php echo $quo['enquiry_attach'];?>" data-attach_name="<?php echo $quo['enquiry_origin_name'];?>" style="cursor:pointer;color: red;" class="quotation_attach_del">删除<?php echo $quo['enquiry_origin_name'];?></span>
+		                    </div>
+		            </div>
+		            <?php endif; ?>
+		            <div class="add-submit"><input type="submit" value="save"></div><br/>
+		            <i class="close"></i>
+		            <i class="file-icon"></i>
+		            <input type="file" name="enquiry_attach" class="file-input" multiple="true">
+		            <input type="hidden" name="qid" value="<?php echo $quo['quotation_id'];?>">
+		        </form>
+		    </div>
+
+			<!-- 增加按钮弹窗 -->
+		    <div class="con-need-add">
+		        <i class="con-need-add-close"></i>
+		        <form action="/quotation/add" method="post" enctype="multipart/form-data">
+		            项目名称：<input type="text" class="project-name" name="enquiry_title"><br/><br/>
+		            咨询日期：<span><?php echo date('d/m/y');?></span><br/>
+		            <br/>
+		            <span style="position: absolute;">项目描述：</span>
+		            <textarea name="enquiry_content" cols="30" rows="10" class="need-miaoshu"></textarea>
+		            <input type="submit" class="add-submit" value="save"><br/>
+		            <i class="file-icon"></i>
+		            <input type="file" class="file-input" name="enquiry_attach[]" multiple="true">
+		        </form>
+		    </div>
             <?php if($quo['reply_content']): ?>
-                <div class="reply_content">回复:<?php echo $quo['reply_content'];?></div>
+                <pre> class="reply_content">回复:<?php echo $quo['reply_content'];?></pre>
             <?php else: ?>
                 <p>&nbsp;</p>
             <?php endif; ?>
@@ -135,52 +175,14 @@
                     <i class="file-icon"></i>
                     <a href="/index/get_file?path=<?php echo $quo['reply_file_path'];?>&origin_name=<?php echo $quo['reply_origin_name'];?>" target="_blank"><?php echo $quo['reply_origin_name'];?></a>
                 </div>
+
             <?php endif; ?>
         </div>
         <?php endforeach; ?>
     </div>
 </div>
-<div class="edi-fullScreen">
-    <div class="con-edi-hide">
-        <i class="con-need-add-close"></i>
-        <form action="/quotation/edit" method="post" enctype="multipart/form-data">
-            项目名称：<input type="text" value="<?php echo $quo['enquiry_title'];?>" name="enquiry_title" class="project-name"><br/><br/>
-            咨询日期：<span><?php echo $quo['addtime']; ?></span><br/>
-            <br/>
-            <span style="position: absolute;">项目描述：</span>
-            <textarea name="enquiry_content"  cols="30" rows="10" class="need-miaoshu"><?php echo $quo['enquiry_content'];?></textarea>
-            <?php if($quo['enquiry_attach']) :?>
-            <div>
-                附件:
-                    <div>
-                        <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
-                        <span data-qid="<?php echo $quo['quotation_id'];?>" data-fid="<?php echo $quo['enquiry_attach'];?>" data-attach_name="<?php echo $quo['enquiry_origin_name'];?>" style="cursor:pointer;color: red;" class="quotation_attach_del">删除<?php echo $quo['enquiry_origin_name'];?></span>
-                    </div>
-            </div>
-            <?php endif; ?>
-            <div class="add-submit"><input type="submit" value="save"></div><br/>
-            <i class="close"></i>
-            <i class="file-icon"></i>
-            <input type="file" name="enquiry_attach" class="file-input" multiple="true">
-            <input type="hidden" name="qid" value="<?php echo $quo['quotation_id'];?>">
-        </form>
-    </div>
-</div>
-<div class="add-fullScreen">
-    <div class="con-need-add">
-        <i class="con-need-add-close"></i>
-        <form action="/quotation/add" method="post" enctype="multipart/form-data">
-            项目名称：<input type="text" class="project-name" name="enquiry_title"><br/><br/>
-            咨询日期：<span><?php echo date('d/m/y');?></span><br/>
-            <br/>
-            <span style="position: absolute;">项目描述：</span>
-            <textarea name="enquiry_content" cols="30" rows="10" class="need-miaoshu"></textarea>
-            <input type="submit" class="add-submit" value="save"><br/>
-            <i class="file-icon"></i>
-            <input type="file" class="file-input" name="enquiry_attach[]" multiple="true">
-        </form>
-    </div>
-</div>
+ <div class="edi-fullScreen"></div>
+ <div class="add-fullScreen"></div>
 <script src="/js/quotation.js"></script>
 </body>
 </html>

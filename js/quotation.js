@@ -57,7 +57,9 @@
 			height : $box+$wrapHeight,
 			display : "block"
 		});
-		$ediHide.css("display","block");
+		$(this).parent().find(".con-edi-hide").css("display","block");
+		//$(this).parent().attr("className")
+		console.log(1)
 		//alert($ediFullScreen)
 	});
 	//保存当前项目
