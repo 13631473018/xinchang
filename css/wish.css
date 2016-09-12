@@ -488,4 +488,8 @@ body{
 	display: block;
 	vertical-align: top;
 }
+.list-wrap>ul{
+	overflow: hidden;
+	*zoom:1;
+}
 /*wish end*/

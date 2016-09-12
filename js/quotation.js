@@ -31,11 +31,14 @@
 	//alert( typeof $box );
 	//增加项目
 	$addBtn.click(function(){
-		$add.css("transform","scale(1)");
 		$addFullScreen.css({
 			height : $box+$wrapHeight,
 			display : "block"
 		});
+		//$add.css("display","block");
+		$add.css("transform","scale(1)");
+		//$(this).parent().find(".con-need-add").css("transform","scale(1)");
+		//$(this).parent().find(".con-need-add").css("display","block");
 	});
 	//关闭项目
 	$addClose.click(function(){
