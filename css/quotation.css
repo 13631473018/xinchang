@@ -198,7 +198,7 @@ html,body,.edi-fullScreen{
 	background: url(../images/quotation/close.png);
 	position: absolute;
 	top:20px;
-	right:52px;
+	right:60px;
 	cursor: pointer;
 }
 .box .content .con-need .con-edi{
@@ -224,7 +224,7 @@ html,body,.edi-fullScreen{
 	background:url(../images/quotation/del.png);
 }
 .con-need-add{
-	background:#e4e4e4;
+	background:#c4c4c4;
 	position: fixed;
     top: 50%;
     left: 50%;
@@ -242,40 +242,42 @@ html,body,.edi-fullScreen{
     z-index: 10;
 }
 .project-name{
-	width:230px;
+	width:418px;
 }
 .con-need-add .con-need-add-close{
 	display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: 20px;
+    height: 20px;
     position: absolute;
-    right: 35px;
+    right: 54px;
     top: 40px;
-    background: url(../images/wish/close.png);
+    background:url(../images/quotation/close.png);
     cursor: pointer;
 }
 .con-need-add .need-miaoshu,.con-edi-hide .need-miaoshu{
 	margin:18px 0 0 60px;
 	height:100px;
+	width: 420px;
+	resize:none;
 }
 textarea{ resize:none;}
 .con-need-add .add-submit,.add-submit{
-	width:50px;
-	height:20px;
+	width:60px;
+	height:25px;
 	background-image: linear-gradient(#FFE000,#F8B72B);
 	background-image: -o-linear-gradient(#FFE000,#F8B72B);
 	background-image: -moz-linear-gradient(#FFE000,#F8B72B);
 	background-image: -webkit-linear-gradient(#FFE000,#F8B72B);
 	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFE000',endColorStr='#F8B72B',gradientType='0'); 
 	border:none;
-	border-radius: 10px;
+	border-radius: 15px;
 	color:#fff;
 	cursor:pointer;
 	position: absolute;
 	right: 40px;
-	bottom: 20px;
+	bottom: 3px;
 	text-align: center;
-	line-height: 20px;
+	line-height: 25px;
 }
 .con-edi-hide .add-submit:hover{
 	background: #4C90BC;
@@ -341,11 +343,4 @@ textarea{ resize:none;}
 }
 .nearby span{
 	cursor: pointer;
-}
-#reply{
-	width:730px;
-	word-wrap:break-word ;
-	word-break: normal;
-	white-space: pre-wrap;
-	font-family: "Microsoft yahei"
 }
