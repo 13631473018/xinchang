@@ -291,7 +291,7 @@ textarea{ resize:none;}
 	top:3px;
 }
 .con-need-add .file-input,.con-edi-hide .file-input{
-	margin-left:41px;
+	margin-left:60px;
 }
 .con-need-add .file-input:hover{
 	cursor: pointer;
