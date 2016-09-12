@@ -20,10 +20,14 @@ class Quotation_model extends CI_Model{
             'enquiry_content'=>$enquiry_content,
             'addtime'=>SYSTEM_TIME,
         );
-        if(isset($_FILES['enquiry_attach'])){
+        if(isset($_FILES['enquiry_attach']) && $_FILES['enquiry_attach']['name']){
             $enquiry_attach = $_FILES['enquiry_attach'];
             $file_multiple = $this->file->upload_file_multiple($enquiry_attach);
-            $upload_file_ids = $this->upload_file->insert_upload_file_record_multiple($file_multiple);
+            //上传出错
+            if($file_multiple['err']){
+               return $file_multiple;
+            }
+            $upload_file_ids = $this->upload_file->insert_upload_file_record_multiple($file_multiple['files']);
             $data['enquiry_attach'] = $upload_file_ids ? implode(',',$upload_file_ids) : '';
         }
 
@@ -74,13 +78,16 @@ class Quotation_model extends CI_Model{
             'enquiry_title'=>$enquiry_title,
             'enquiry_content'=>$enquiry_content,
         );
-        if(isset($_FILES['enquiry_attach'])){
+        if(isset($_FILES['enquiry_attach']) && $_FILES['enquiry_attach']['name']){
             $enquiry_attach = $_FILES['enquiry_attach'];
-            $upload_ojb = $this->file->upload_file($enquiry_attach);
-            $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
-            $data['enquiry_attach'] = $upload_file_id;
+            $file_multiple = $this->file->upload_file_multiple($enquiry_attach);
+            //上传出错
+            if($file_multiple['err']){
+                return $file_multiple;
+            }
+            $upload_file_ids = $this->upload_file->insert_upload_file_record_multiple($file_multiple['files']);
+            $data['enquiry_attach'] = $upload_file_ids ? implode(',',$upload_file_ids) : '';
         }
-
         $this->db->where(array('quotation_id'=>$qid));
         $result = $this->db->update($this->_table,$data);
         return $result;

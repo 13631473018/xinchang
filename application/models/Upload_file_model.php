@@ -38,7 +38,6 @@ class Upload_file_model extends CI_Model{
         if(!$file_multiple){
             return false;
         }
-        $data = array();
         $ids = array();
         $this->db->trans_start();
         foreach($file_multiple as $key=>$file){
