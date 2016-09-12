@@ -78,7 +78,7 @@ class Quotation_model extends CI_Model{
             'enquiry_title'=>$enquiry_title,
             'enquiry_content'=>$enquiry_content,
         );
-        if(isset($_FILES['enquiry_attach']) && $_FILES['enquiry_attach']['name']){
+        if(isset($_FILES['enquiry_attach']) && $_FILES['enquiry_attach']['name'][0]){
             $enquiry_attach = $_FILES['enquiry_attach'];
             $file_multiple = $this->file->upload_file_multiple($enquiry_attach);
             //上传出错

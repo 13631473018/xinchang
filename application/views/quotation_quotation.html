@@ -137,9 +137,9 @@
 		            <?php if($quo['enquiry_attach']) :?>
 		            <div>
 		                附件:
-		                    <div>
+		                    <div class="nearby">
 		                        <a href="/index/get_file?path=<?php echo $quo['enquiry_file_path'];?>&origin_name=<?php echo $quo['enquiry_origin_name'];?>" target="_blank"><?php echo $quo['enquiry_origin_name'];?></a>
-		                        <span data-qid="<?php echo $quo['quotation_id'];?>" data-fid="<?php echo $quo['enquiry_attach'];?>" data-attach_name="<?php echo $quo['enquiry_origin_name'];?>" style="cursor:pointer;color: red;" class="quotation_attach_del">删除<?php echo $quo['enquiry_origin_name'];?></span>
+		                        <span data-qid="<?php echo $quo['quotation_id'];?>" data-fid="<?php echo $quo['enquiry_attach'];?>" data-attach_name="<?php echo $quo['enquiry_origin_name'];?>" style="padding-left:10px;" class="quotation_attach_del">删除<?php echo $quo['enquiry_origin_name'];?></span>
 		                    </div>
 		            </div>
 		            <?php endif; ?>
