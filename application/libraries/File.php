@@ -28,7 +28,7 @@ class file
             @chmod($this->path, 0777);
         }
         if( $this->f['size'] >$max_size){
-            $this->err = array('err' => '文件不能大于5M');
+            $this->err =  '文件不能大于5M' ;
             return $this;
         }
         if(!empty($this->f['tmp_name']) && $this->f['size'] != 0 && $this->f['error'] == 0 ){
@@ -52,7 +52,7 @@ class file
     //一次上传多个文件
     public function upload_file_multiple(&$fs){
         $file_index = 0;
-        $file_multiple = array();
+        $file_multiple = array('err'=>'','files'=>array());
         $max_size = 5*1024*1024;
         $array_size = count($fs['name']);
         $relate_save_path = 'upload' . DS .date('Y') .DS .date('m') .DS . date('d') . DS ;
@@ -61,16 +61,16 @@ class file
             @mkdir($this->path, 0777, true);
             @chmod($this->path, 0777);
         }
-
         for($file_index;$file_index<$array_size;$file_index++){
             $f_name = $fs['name'][$file_index];
             $f_tmp_name = $fs['tmp_name'][$file_index];
             $f_error = $fs['error'][$file_index];
             $f_size = $fs['size'][$file_index];
+            if($f_size > $max_size){
+                $file_multiple['err'] = '文件不能大于5M';
+                return $file_multiple;
+            }
             if(!empty($f_name) && !empty($f_size) && empty($f_error) ){
-                if($f_size >$max_size){
-                    continue;
-                }
                 $file_info = pathinfo($f_name);
                 $fileName = SYSTEM_TIME . uniqid();
                 $ext = $file_info['extension'];
@@ -78,11 +78,11 @@ class file
                 $save_absolute = $this->path . $fileName;
                 @chmod($save_absolute, 0777);
                 if(move_uploaded_file($f_tmp_name,$save_absolute)){
-                    $file_multiple[$file_index]['newName'] =  $fileName;
-                    $file_multiple[$file_index]['originName'] =  $f_name;
-                    $file_multiple[$file_index]['fileSize'] =  $f_size;
-                    $file_multiple[$file_index]['fileExt'] =  $ext;
-                    $file_multiple[$file_index]['filePath'] =  DS . $relate_save_path.$fileName;
+                    $file_multiple['files'][$file_index]['newName'] =  $fileName;
+                    $file_multiple['files'][$file_index]['originName'] =  $f_name;
+                    $file_multiple['files'][$file_index]['fileSize'] =  $f_size;
+                    $file_multiple['files'][$file_index]['fileExt'] =  $ext;
+                    $file_multiple['files'][$file_index]['filePath'] =  DS . $relate_save_path.$fileName;
                 }
 
             }
