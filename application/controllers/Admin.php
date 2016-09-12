@@ -75,9 +75,12 @@ class Admin extends MY_BackEndController {
                 'reply_content'=>$reply_content,
                 'is_reply'=>1,
             );
-            if(isset($_FILES['reply_attach'])){
+            if(isset($_FILES['reply_attach']) && $_FILES['reply_attach']['name']){
                 $reply_attach = $_FILES['reply_attach'];
                 $upload_ojb = $this->file->upload_file($reply_attach);
+                if($upload_ojb->err){
+                    do_frame($upload_ojb->err);
+                }
                 $upload_file_id = $this->upload_file->insert_upload_file_record($upload_ojb);
                 $data['reply_attach'] = $upload_file_id;
             }
@@ -85,9 +88,9 @@ class Admin extends MY_BackEndController {
             $this->p->db->where(array('quotation_id'=>$qid));
             $result = $this->p->db->update('quotation',$data);
             if($result){
-                echo '保持成功';
-                header("Location: /admin/quotation_list");
+                do_frame('保存成功!','/admin/quotation_list');
             }
+
         }
 
         $this->p->db->select('*');

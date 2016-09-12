@@ -18,19 +18,23 @@ class Quotation extends MY_Controller {
     public function add(){
 
         $this->load->model('quotation_model','quotation');
-        if($this->quotation->add()){
-            echo '报价成功！';
-            header('Location: /quotation/quotation');
+        $res = $this->quotation->add();
+        if($res['err']){
+            do_frame($res['err']);
         }
+        do_frame('添加报价成功！');
+        header('Location: /quotation/quotation');
 
     }
 
     public function edit(){
         $this->load->model('quotation_model','quotation');
-        if($this->quotation->edit()){
-            echo '修改成功！';
-            header('Location: /quotation/quotation');
+        $res = $this->quotation->edit();
+        if($res['err']){
+            do_frame($res['err']);
         }
+        do_frame('编辑成功！');
+        header('Location: /quotation/quotation');
     }
 
     public function del(){
