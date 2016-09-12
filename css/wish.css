@@ -484,5 +484,8 @@ body{
 .wrap .wish .w-f{
 	margin-top:25px;
 }
-
+.list-wrap ul li img{
+	display: block;
+	vertical-align: top;
+}
 /*wish end*/
