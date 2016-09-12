@@ -146,6 +146,7 @@ html,body,.edi-fullScreen{
 }
 .box .content .con-need .con-title{
 	margin-left:-30px;
+	font-weight: bold;
 }
 .box .content .file-icon{
 	position: relative;
@@ -334,4 +335,17 @@ textarea{ resize:none;}
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);
 	display: none;
 	transition: all .3s;
+}
+.nearby{
+	color:blue;
+}
+.nearby span{
+	cursor: pointer;
+}
+#reply{
+	width:730px;
+	word-wrap:break-word ;
+	word-break: normal;
+	white-space: pre-wrap;
+	font-family: "Microsoft yahei"
 }
