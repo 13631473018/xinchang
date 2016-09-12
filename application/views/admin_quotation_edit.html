@@ -15,7 +15,7 @@
     <!---内容start--->
     <div class="scheme-center center">
 
-        <form action="" method="post" enctype="multipart/form-data" id="myform">
+        <form action="" method="post" enctype="multipart/form-data" id="myform" target="_quotation_edit_">
             <div class="out-center">
                 <table width="92%" class="table" style="">
                     <tbody>
@@ -61,7 +61,6 @@
                                 <?php else: ?>
                                     没有上传
                                 <?php endif; ?>
-
                                 <input type="file" name="reply_attach">
                             </td>
                         </tr>
@@ -72,7 +71,7 @@
             </div>
             <p class="arear-add-sheng-edit-p"><input type="submit" name="secondarea_name_submit" class="firstarea_name_submit room_scheme_submit" value="保存"></p>
         </form>
-
+        <iframe name="_quotation_edit_" style="display: none;"></iframe>
     </div>
     <!---内容end--->
 
